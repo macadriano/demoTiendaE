@@ -204,7 +204,7 @@
       el.innerHTML = list.map(function (p) {
         var eliminado = !!p.deleted_at;
         var img = (p.imagenes && p.imagenes[0] && p.imagenes[0].ruta) ? p.imagenes[0].ruta : '';
-        var imgHtml = img ? '<div class="img-load-wrap img-thumb img-thumb-sm rounded me-2' + (eliminado ? ' opacity-75' : '') + '"><div class="img-load-spinner" aria-hidden="true"></div><img src="' + img.replace(/"/g, '&quot;') + '" alt="" class="rounded" onload="this.parentElement.classList.add(\'loaded\')" onerror="this.parentElement.classList.add(\'loaded\')"></div>' : '';
+        var imgHtml = img ? '<img src="' + img + '" alt="" class="rounded me-2" style="width:48px;height:48px;object-fit:cover' + (eliminado ? ';opacity:0.6' : '') + '">' : '';
         var badgeEliminado = eliminado ? ' <span class="badge bg-danger">Eliminado</span>' : '';
         var acciones = eliminado
           ? '<button type="button" class="btn btn-outline-success btn-sm btn-restore" data-id="' + p.id + '">Restaurar</button>'
