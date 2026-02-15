@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Panel de despacho - TiendaE</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light min-vh-100 py-4">
+  <div id="staffLogin" class="container">
+    <a href="index.html" class="d-inline-block mb-3 text-primary fw-semibold text-decoration-none">← Volver a la tienda</a>
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-10 col-md-6 col-lg-5">
+        <div class="card shadow-sm">
+          <div class="card-body p-4">
+            <h1 class="h5 fw-bold mb-4">Acceso personal (despacho)</h1>
+            <p class="text-muted small mb-3">Solo usuarios de staff pueden ingresar. Los compradores deben usar la tienda.</p>
+            <form id="formStaffLogin">
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Contraseña</label>
+                <div class="input-group">
+                  <input type="password" name="password" class="form-control" required id="staffPassword">
+                  <button type="button" class="btn btn-outline-secondary" aria-label="Mostrar contraseña" onclick="var i=document.getElementById('staffPassword'); i.type=i.type==='password'?'text':'password'; this.textContent=i.type==='password'?'Ver':'Ocultar'; this.setAttribute('aria-label', i.type==='password'?'Mostrar contraseña':'Ocultar contraseña');">Ver</button>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Entrar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="staffPanel" class="container d-none">
+    <a href="index.html" class="d-inline-block mb-3 text-primary fw-semibold text-decoration-none">← Volver a la tienda</a>
+    <a href="admin-productos.html" class="d-inline-block mb-2 ms-2 text-secondary small text-decoration-none">Admin productos</a>
+    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start gap-3 mb-4">
+      <h1 class="h5 fw-bold mb-0">Administrar pedidos</h1>
+      <button type="button" class="btn btn-outline-secondary btn-sm" id="btnStaffLogout">Cerrar sesión</button>
+    </div>
+
+    <div class="card shadow-sm mb-3">
+      <div class="card-body py-2">
+        <div class="row g-2 align-items-end">
+          <div class="col-12 col-md-3">
+            <label class="form-label small mb-0">Estado</label>
+            <select id="filterEstado" class="form-select form-select-sm">
+              <option value="">Todos</option>
+              <option value="pendiente">Pendiente</option>
+              <option value="pagado">Pagado</option>
+              <option value="preparado">Preparado</option>
+              <option value="enviado">Enviado</option>
+              <option value="finalizado">Finalizado</option>
+              <option value="cancelado">Cancelado</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-4">
+            <label class="form-label small mb-0">Cliente (email o nombre)</label>
+            <input type="text" id="filterCliente" class="form-control form-control-sm" placeholder="Buscar...">
+          </div>
+          <div class="col-12 col-md-2">
+            <button type="button" class="btn btn-primary btn-sm w-100" id="btnFiltrar">Filtrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow-sm mb-3">
+      <div class="card-body py-2">
+        <p class="small text-muted mb-2">WhatsApp: configurá los números para enviar envíos al gestor y el listado de pedidos al proveedor (ej. 5491112345678)</p>
+        <div class="row g-2">
+          <div class="col-12 col-md-5">
+            <label class="form-label small mb-0">Nº Gestor (envíos)</label>
+            <input type="text" id="whatsappGestor" class="form-control form-control-sm" placeholder="5491112345678">
+          </div>
+          <div class="col-12 col-md-5">
+            <label class="form-label small mb-0">Nº Proveedor (compras)</label>
+            <input type="text" id="whatsappProveedor" class="form-control form-control-sm" placeholder="5491198765432">
+          </div>
+          <div class="col-12 col-md-2 d-flex align-items-end">
+            <button type="button" class="btn btn-outline-secondary btn-sm" id="btnGuardarWhatsApp">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <span class="small text-muted" id="pedidosCount"></span>
+      <button type="button" class="btn btn-success btn-sm d-none" id="btnWhatsAppProveedor">Enviar listado actual a proveedor por WhatsApp</button>
+    </div>
+    <div id="staffPedidosList"></div>
+
+    <div class="card shadow-sm mt-4">
+      <div class="card-header bg-light d-flex align-items-center">
+        <button class="btn btn-link btn-sm text-dark text-decoration-none p-0 me-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRegenerarClaves" aria-expanded="false">Regenerar claves</button>
+        <span class="small text-muted">(solo administrador staff)</span>
+      </div>
+      <div class="collapse" id="collapseRegenerarClaves">
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <h6 class="fw-bold">Clave de comprador (cliente)</h6>
+              <div class="mb-2">
+                <label class="form-label small mb-0">Usuario</label>
+                <select id="selectClienteClave" class="form-select form-select-sm"><option value="">Seleccionar...</option></select>
+              </div>
+              <div class="mb-2">
+                <label class="form-label small mb-0">Nueva contraseña</label>
+                <input type="password" id="nuevaClaveCliente" class="form-control form-control-sm" placeholder="Mín. 6 caracteres">
+              </div>
+              <button type="button" class="btn btn-primary btn-sm" id="btnRegenerarCliente">Regenerar clave cliente</button>
+            </div>
+            <div class="col-12 col-md-6">
+              <h6 class="fw-bold">Clave de staff</h6>
+              <div class="mb-2">
+                <label class="form-label small mb-0">Usuario staff</label>
+                <select id="selectStaffClave" class="form-select form-select-sm"><option value="">Seleccionar...</option></select>
+              </div>
+              <div class="mb-2">
+                <label class="form-label small mb-0">Nueva contraseña</label>
+                <input type="password" id="nuevaClaveStaff" class="form-control form-control-sm" placeholder="Mín. 6 caracteres">
+              </div>
+              <button type="button" class="btn btn-primary btn-sm" id="btnRegenerarStaff">Regenerar clave staff</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainerStaff" class="toast-container-tiendae" style="top:1rem;right:1rem;z-index:9999;"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    var API = '/api';
+    var token = localStorage.getItem('staffToken');
+    function authHeaders() { return token ? { Authorization: 'Bearer ' + token } : {}; }
+
+    function showToast(message, type) {
+      type = type || 'success';
+      var container = document.getElementById('toastContainerStaff');
+      if (!container) return;
+      var icons = { success: '✓', error: '✕', info: 'ℹ' };
+      var el = document.createElement('div');
+      el.className = 'toast-tiendae ' + type;
+      el.setAttribute('role', 'alert');
+      el.innerHTML = '<span class="toast-icon">' + (icons[type] || '') + '</span><span>' + String(message).replace(/</g, '&lt;') + '</span>';
+      container.appendChild(el);
+      setTimeout(function () {
+        el.style.opacity = '0';
+        el.style.transform = 'translateX(1rem)';
+        el.style.transition = 'opacity 0.25s, transform 0.25s';
+        setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 280);
+      }, 3200);
+    }
+
+    function showStaffViews() {
+      var loginEl = document.getElementById('staffLogin');
+      var panelEl = document.getElementById('staffPanel');
+      if (token) {
+        loginEl.classList.add('d-none');
+        panelEl.classList.remove('d-none');
+        loadStaffPedidos();
+      } else {
+        loginEl.classList.remove('d-none');
+        panelEl.classList.add('d-none');
+      }
+    }
+
+    function formatPrice(n) {
+      return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(n);
+    }
+
+    function getWhatsAppNumber(key) {
+      var raw = localStorage.getItem('staffWhatsApp_' + key) || '';
+      return raw.replace(/\D/g, '');
+    }
+
+    function buildMensajeEnvio(p) {
+      var lines = [
+        'ENVÍO - Pedido #' + p.id,
+        'Cliente: ' + (p.user_nombre || '-') + ' (' + p.user_email + ')',
+        'Teléfono: ' + (p.telefono || '-'),
+        'Dirección: ' + (p.direccion_envio || '-'),
+        (p.nota ? 'Nota: ' + p.nota : ''),
+        'Ítems: ' + (p.items || []).map(function (i) { return i.nombre + ' x' + i.cantidad; }).join(', '),
+        'Total: ' + formatPrice(p.total)
+      ];
+      return lines.filter(Boolean).join('\n');
+    }
+
+    function buildMensajeListadoProveedor(pedidos) {
+      var lines = ['PEDIDOS A PROVEEDOR - ' + new Date().toLocaleDateString('es-AR'), '---'];
+      pedidos.forEach(function (p) {
+        var items = (p.items || []).map(function (i) { return i.nombre + ' x' + i.cantidad; }).join(', ');
+        lines.push('Pedido #' + p.id + ' - ' + formatPrice(p.total) + ' - ' + items);
+      });
+      lines.push('---');
+      lines.push('Total pedidos: ' + pedidos.length);
+      return lines.join('\n');
+    }
+
+    async function loadStaffPedidos() {
+      var estado = document.getElementById('filterEstado').value;
+      var cliente = (document.getElementById('filterCliente') && document.getElementById('filterCliente').value) || '';
+      var params = [];
+      if (estado) params.push('estado=' + encodeURIComponent(estado));
+      if (cliente.trim()) params.push('cliente=' + encodeURIComponent(cliente.trim()));
+      var url = API + '/staff/pedidos' + (params.length ? '?' + params.join('&') : '');
+      var res = await fetch(url, { headers: authHeaders() });
+      if (res.status === 401) {
+        token = null;
+        localStorage.removeItem('staffToken');
+        showStaffViews();
+        return;
+      }
+      var pedidos = await res.json();
+      window._staffPedidosActuales = pedidos;
+
+      var countEl = document.getElementById('pedidosCount');
+      if (countEl) countEl.textContent = pedidos.length + ' pedido(s)';
+      var btnProv = document.getElementById('btnWhatsAppProveedor');
+      if (btnProv) { btnProv.classList.toggle('d-none', pedidos.length === 0); }
+
+      var list = document.getElementById('staffPedidosList');
+      if (pedidos.length === 0) {
+        list.innerHTML = '<p class="text-muted text-center py-4">No hay pedidos con ese filtro.</p>';
+        return;
+      }
+      var estadosStaff = [
+        { v: 'pendiente', l: 'Pendiente' },
+        { v: 'pagado', l: 'Pagado' },
+        { v: 'preparado', l: 'Preparado' },
+        { v: 'enviado', l: 'Enviado' },
+        { v: 'finalizado', l: 'Finalizado' },
+        { v: 'cancelado', l: 'Cancelado' }
+      ];
+      var estadoActual = function (e) { return (e === 'entregado' ? 'finalizado' : e) || e; };
+      list.innerHTML = pedidos.map(function (p) {
+        var itemsHtml = (p.items || []).map(function (i) {
+          return '<li class="list-group-item py-2">' + i.nombre + ' × ' + i.cantidad + ' — ' + formatPrice(i.precio * i.cantidad) + '</li>';
+        }).join('');
+        var pe = estadoActual(p.estado);
+        var opts = estadosStaff.map(function (e) {
+          return '<option value="' + e.v + '"' + (e.v === pe ? ' selected' : '') + '>' + e.l + '</option>';
+        }).join('');
+        var badgeClass = 'bg-secondary';
+        if (pe === 'pagado' || pe === 'preparado') badgeClass = 'bg-primary';
+        else if (pe === 'enviado') badgeClass = 'bg-info';
+        else if (pe === 'finalizado') badgeClass = 'bg-success';
+        else if (pe === 'cancelado') badgeClass = 'bg-danger';
+        var label = (estadosStaff.find(function (x) { return x.v === pe; }) || {}).l || pe;
+        var envioHtml = '<div class="border rounded p-2 bg-light mb-2 small">' +
+          '<strong>Domicilio de envío</strong><br>' + (p.direccion_envio || '—') +
+          '<br><strong>Teléfono:</strong> ' + (p.telefono || '—') +
+          (p.nota ? '<br><strong>Notas:</strong> ' + p.nota : '') + '</div>';
+        return '<div class="card shadow-sm mb-3" data-id="' + p.id + '">' +
+          '<div class="card-body">' +
+            '<div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-2">' +
+              '<div><strong class="text-primary">Pedido #' + p.id + '</strong><br>' +
+              '<small class="text-muted">' + new Date(p.created_at).toLocaleString('es-AR') + '</small><br>' +
+              '<small>Cliente: ' + (p.user_nombre || p.user_email || '-') + ' (' + p.user_email + ')</small></div>' +
+              '<span class="badge ' + badgeClass + '">' + label + '</span>' +
+            '</div>' +
+            envioHtml +
+            '<ul class="list-group list-group-flush mb-2">' + itemsHtml + '</ul>' +
+            '<p class="fw-bold text-primary mb-2">Total: ' + formatPrice(p.total) + '</p>' +
+            '<div class="d-flex flex-wrap gap-2 align-items-center">' +
+              '<select class="form-select form-select-sm estado-select" data-id="' + p.id + '" style="max-width:160px">' + opts + '</select>' +
+              '<button type="button" class="btn btn-primary btn-sm btn-marcar-enviado" data-id="' + p.id + '">Marcar Enviado</button>' +
+              '<button type="button" class="btn btn-success btn-sm btn-whatsapp-envio" data-id="' + p.id + '" title="Enviar datos del envío al gestor por WhatsApp">WhatsApp Envío</button>' +
+            '</div>' +
+          '</div></div>';
+      }).join('');
+
+      list.querySelectorAll('.estado-select').forEach(function (sel) {
+        sel.addEventListener('change', async function () {
+          var id = sel.dataset.id;
+          var estado = sel.value;
+          var r = await fetch(API + '/staff/pedidos/' + id, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json', ...authHeaders() },
+            body: JSON.stringify({ estado: estado })
+          });
+          if (r.ok) { loadStaffPedidos(); showToast('Estado actualizado.'); } else showToast('Error al actualizar.', 'error');
+        });
+      });
+      list.querySelectorAll('.btn-marcar-enviado').forEach(function (btn) {
+        btn.addEventListener('click', async function () {
+          var id = btn.dataset.id;
+          var r = await fetch(API + '/staff/pedidos/' + id, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json', ...authHeaders() },
+            body: JSON.stringify({ estado: 'enviado' })
+          });
+          if (r.ok) { loadStaffPedidos(); showToast('Estado actualizado.'); } else showToast('Error al actualizar.', 'error');
+        });
+      });
+      list.querySelectorAll('.btn-whatsapp-envio').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var id = btn.dataset.id;
+          var pedidosList = window._staffPedidosActuales || [];
+          var p = pedidosList.find(function (x) { return String(x.id) === String(id); });
+          if (!p) return;
+          var num = getWhatsAppNumber('gestor');
+          if (!num) { showToast('Configurá el número del gestor (WhatsApp) arriba.', 'error'); return; }
+          var msg = encodeURIComponent(buildMensajeEnvio(p));
+          window.open('https://wa.me/' + num + '?text=' + msg, '_blank');
+        });
+      });
+    }
+
+    document.getElementById('formStaffLogin').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var form = e.target;
+      var res = await fetch(API + '/staff/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: form.querySelector('[name="email"]').value, password: form.querySelector('[name="password"]').value })
+      });
+      var data = await res.json().catch(function () { return {}; });
+      if (!res.ok) {
+        showToast(data.error || 'Credenciales incorrectas.', 'error');
+        return;
+      }
+      token = data.token;
+      localStorage.setItem('staffToken', token);
+      showStaffViews();
+    });
+
+    document.getElementById('btnStaffLogout').addEventListener('click', function () {
+      token = null;
+      localStorage.removeItem('staffToken');
+      showStaffViews();
+    });
+
+    document.getElementById('filterEstado').addEventListener('change', loadStaffPedidos);
+    document.getElementById('btnFiltrar') && document.getElementById('btnFiltrar').addEventListener('click', loadStaffPedidos);
+    document.getElementById('filterCliente') && document.getElementById('filterCliente').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); loadStaffPedidos(); }
+    });
+
+    document.getElementById('btnGuardarWhatsApp') && document.getElementById('btnGuardarWhatsApp').addEventListener('click', function () {
+      var g = (document.getElementById('whatsappGestor') && document.getElementById('whatsappGestor').value) || '';
+      var pr = (document.getElementById('whatsappProveedor') && document.getElementById('whatsappProveedor').value) || '';
+      localStorage.setItem('staffWhatsApp_gestor', g.trim());
+      localStorage.setItem('staffWhatsApp_proveedor', pr.trim());
+      showToast('Números guardados.');
+    });
+    (function () {
+      var g = localStorage.getItem('staffWhatsApp_gestor') || '';
+      var pr = localStorage.getItem('staffWhatsApp_proveedor') || '';
+      if (document.getElementById('whatsappGestor')) document.getElementById('whatsappGestor').value = g;
+      if (document.getElementById('whatsappProveedor')) document.getElementById('whatsappProveedor').value = pr;
+    })();
+
+    document.getElementById('btnWhatsAppProveedor') && document.getElementById('btnWhatsAppProveedor').addEventListener('click', function () {
+      var pedidos = window._staffPedidosActuales || [];
+      if (pedidos.length === 0) { showToast('No hay pedidos en el listado.', 'error'); return; }
+      var num = getWhatsAppNumber('proveedor');
+      if (!num) { showToast('Configurá el número del proveedor (WhatsApp) arriba.', 'error'); return; }
+      var msg = encodeURIComponent(buildMensajeListadoProveedor(pedidos));
+      window.open('https://wa.me/' + num + '?text=' + msg, '_blank');
+    });
+
+    async function loadListasRegenerar() {
+      try {
+        var rClientes = await fetch(API + '/staff/lista-clientes', { headers: authHeaders() });
+        var rStaff = await fetch(API + '/staff/lista-staff', { headers: authHeaders() });
+        if (rClientes.ok) {
+          var clientes = await rClientes.json();
+          var sel = document.getElementById('selectClienteClave');
+          if (sel) sel.innerHTML = '<option value="">Seleccionar...</option>' + clientes.map(function (c) { return '<option value="' + c.id + '">' + (c.email || '') + (c.nombre ? ' — ' + c.nombre : '') + '</option>'; }).join('');
+        }
+        if (rStaff.ok) {
+          var staff = await rStaff.json();
+          var selS = document.getElementById('selectStaffClave');
+          if (selS) selS.innerHTML = '<option value="">Seleccionar...</option>' + staff.map(function (s) { return '<option value="' + s.id + '">' + (s.email || '') + (s.nombre ? ' — ' + s.nombre : '') + '</option>'; }).join('');
+        }
+      } catch (e) { showToast('Error al cargar listas.', 'error'); }
+    }
+    document.getElementById('collapseRegenerarClaves') && document.getElementById('collapseRegenerarClaves').addEventListener('show.bs.collapse', loadListasRegenerar);
+
+    document.getElementById('btnRegenerarCliente') && document.getElementById('btnRegenerarCliente').addEventListener('click', async function () {
+      var id = document.getElementById('selectClienteClave') && document.getElementById('selectClienteClave').value;
+      var clave = document.getElementById('nuevaClaveCliente') && document.getElementById('nuevaClaveCliente').value;
+      if (!id) { showToast('Seleccioná un cliente.', 'error'); return; }
+      if (!clave || clave.length < 6) { showToast('La contraseña debe tener al menos 6 caracteres.', 'error'); return; }
+      var r = await fetch(API + '/staff/regenerar-clave-cliente/' + id, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', ...authHeaders() },
+        body: JSON.stringify({ nuevaClave: clave })
+      });
+      var data = await r.json().catch(function () { return {}; });
+      if (r.ok) { showToast('Clave del cliente actualizada.'); document.getElementById('nuevaClaveCliente').value = ''; }
+      else showToast(data.error || 'Error.', 'error');
+    });
+
+    document.getElementById('btnRegenerarStaff') && document.getElementById('btnRegenerarStaff').addEventListener('click', async function () {
+      var id = document.getElementById('selectStaffClave') && document.getElementById('selectStaffClave').value;
+      var clave = document.getElementById('nuevaClaveStaff') && document.getElementById('nuevaClaveStaff').value;
+      if (!id) { showToast('Seleccioná un usuario staff.', 'error'); return; }
+      if (!clave || clave.length < 6) { showToast('La contraseña debe tener al menos 6 caracteres.', 'error'); return; }
+      var r = await fetch(API + '/staff/regenerar-clave-staff/' + id, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', ...authHeaders() },
+        body: JSON.stringify({ nuevaClave: clave })
+      });
+      var data = await r.json().catch(function () { return {}; });
+      if (r.ok) { showToast('Clave del staff actualizada.'); document.getElementById('nuevaClaveStaff').value = ''; }
+      else showToast(data.error || 'Error.', 'error');
+    });
+
+    showStaffViews();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1010 @@
+[
+  {
+    "codigo": "1123-ESTEREOFIJO",
+    "nombre": "ESTEREO BLUETOOTH AUTO FRENTE FIJO ALIEN 1123 ____",
+    "precio": 13500,
+    "imagen": "fotos/1123-ESTEREOFIJO.jpg"
+  },
+  {
+    "codigo": "1881-ESTEREODESM",
+    "nombre": "ESTEREO BLUETOOTH AUTO FRENTE DESMONTABLE ALIEN __",
+    "precio": 17900,
+    "imagen": "fotos/1881-ESTEREODESM.jpg"
+  },
+  {
+    "codigo": "CPM158-",
+    "nombre": "BOMBA CENTRIFUGA 1GP - 750W - LUSQTOFF ___________",
+    "precio": 76500,
+    "imagen": "fotos/CPM158-.jpg"
+  },
+  {
+    "codigo": "DXKITOOLS499",
+    "nombre": "KIT DE HERRAMIENTAS PROFESIONAL DINAX 499 EN 1 ___",
+    "precio": 135000,
+    "imagen": "fotos/DXKITOOLS499.jpg"
+  },
+  {
+    "codigo": "KJH-PE15006M",
+    "nombre": "PAVA TERMO ELECTRICO KANJI _______________________",
+    "precio": 28000,
+    "imagen": "fotos/KJH-PE15006M.jpg"
+  },
+  {
+    "codigo": "KJM-ALAM01-",
+    "nombre": "KIT DE ALARMA DE SEGURIDAD HOGAR KANJI ___________",
+    "precio": 90000,
+    "imagen": "fotos/KJM-ALAM01-.jpg"
+  },
+  {
+    "codigo": "KTS-1333",
+    "nombre": "PARLANTE 6.5 PLG BT C/MICROFONO __________________",
+    "precio": 18000,
+    "imagen": "fotos/KTS-1333.jpg"
+  },
+  {
+    "codigo": "RD-440",
+    "nombre": "PARLANTE PORTATIL SUPER BASS ALAXE c _____________",
+    "precio": 13300,
+    "imagen": "fotos/RD-440.jpg"
+  },
+  {
+    "codigo": "RD-510",
+    "nombre": "ZAPATERO 6 NIVELES CON CAJONES- __________________",
+    "precio": 20300,
+    "imagen": "fotos/RD-510.jpg"
+  },
+  {
+    "codigo": "RD-577",
+    "nombre": "RACK DE ZAPATOS PLEGABLE 6 NIVELES- ______________",
+    "precio": 25300,
+    "imagen": "fotos/RD-577.jpg"
+  },
+  {
+    "codigo": "RD-657",
+    "nombre": "PARLANTE 8\"X2 CON CARRITO Y LUCES - ______________",
+    "precio": 87000,
+    "imagen": "fotos/RD-657.jpg"
+  },
+  {
+    "codigo": "SQ201",
+    "nombre": "DETECTOR SCANNER DE METAL MD-3003B1 ______________",
+    "precio": 13100,
+    "imagen": "fotos/SQ201.jpg"
+  },
+  {
+    "codigo": "TMPT9612",
+    "nombre": "PARLANTE DE DUCHA BLUETOOTH - ____________________",
+    "precio": 7200,
+    "imagen": "fotos/TMPT9612.jpg"
+  },
+  {
+    "codigo": "2128503MD---",
+    "nombre": "BICICLETA RODADO 29 - 21 VEL - FIAT 500 - ALUMINIO",
+    "precio": 189000,
+    "imagen": "fotos/2128503MD---.jpg"
+  },
+  {
+    "codigo": "473ML--",
+    "nombre": "VASO TERMICO LED CON PARLANTE 473ML ______________",
+    "precio": 14900,
+    "imagen": "fotos/473ML--.jpg"
+  },
+  {
+    "codigo": "CPC-801",
+    "nombre": "PARLANTE PARA PC C/LUZ RGB (606) _________________",
+    "precio": 14300,
+    "imagen": "fotos/CPC-801.jpg"
+  },
+  {
+    "codigo": "H-08",
+    "nombre": "TRIPODE PARA PARLANTE C / LUZ RGB- _______________",
+    "precio": 11100,
+    "imagen": "fotos/H-08.jpg"
+  },
+  {
+    "codigo": "KJHWMCVSL6K",
+    "nombre": "LAVARROPAS AUTOMATICO 6 KG CARGA SUPERIOR KANJI __",
+    "precio": 250000,
+    "imagen": "fotos/KJHWMCVSL6K.jpg"
+  },
+  {
+    "codigo": "RD-642",
+    "nombre": "SET MARCADORES DOBLE PUNTA X120PCS plumon ________",
+    "precio": 24000,
+    "imagen": "fotos/RD-642.jpg"
+  },
+  {
+    "codigo": "SETFARY5P",
+    "nombre": "SET DE BATERIA 5 PIEZAS - ACERO CARBONO ANTIADHERE",
+    "precio": 35000,
+    "imagen": "fotos/SETFARY5P.jpg"
+  },
+  {
+    "codigo": "SH4579OR",
+    "nombre": "TUPPER PLEGABLE X3 350ML-500ML-800ML _____________",
+    "precio": 15800,
+    "imagen": "fotos/SH4579OR.jpg"
+  },
+  {
+    "codigo": "VXACH29",
+    "nombre": "BICICLETA MTB RODADO 29 VEX - VARIOS COLORES -  __",
+    "precio": 215000,
+    "imagen": "fotos/VXACH29.jpg"
+  },
+  {
+    "codigo": "WD-580",
+    "nombre": "PARLANTE CYBERTRUCK TESLA CON PANTALLA LED - _____",
+    "precio": 23900,
+    "imagen": "fotos/WD-580.jpg"
+  },
+  {
+    "codigo": "DL1166",
+    "nombre": "JUEGO DE TOALLAS SUPERABSORVENTE 70X35- 140X70 ___",
+    "precio": 10900,
+    "imagen": "fotos/DL1166.jpg"
+  },
+  {
+    "codigo": "DL1181-2",
+    "nombre": "CAMA NIDO DE MASCOTA 60 CM ALGODON PELO LARGO/ ___",
+    "precio": 14600,
+    "imagen": "fotos/DL1181-2.jpg"
+  },
+  {
+    "codigo": "4800-",
+    "nombre": "COCINA INDUSTRIAL USMAN 4H + 1 PLANCHA COMPACT ___",
+    "precio": 410000,
+    "imagen": "fotos/4800-.jpg"
+  },
+  {
+    "codigo": "912-",
+    "nombre": "MONOPATINDE METAL CON LUCES  _____________________",
+    "precio": 17900,
+    "imagen": "fotos/912-.jpg"
+  },
+  {
+    "codigo": "AFR-1802",
+    "nombre": "FREIDORA DE AIRE 10 LTS WESTINGHOUSE - AYR FRYER _",
+    "precio": 110000,
+    "imagen": "fotos/AFR-1802.jpg"
+  },
+  {
+    "codigo": "CANASTA-MATE",
+    "nombre": "CANASTA DE MATE - CANASTA MATERA CUERINA _________",
+    "precio": 9100,
+    "imagen": "fotos/CANASTA-MATE.jpg"
+  },
+  {
+    "codigo": "CONSERV-10LTS",
+    "nombre": "CONSERVADORA 10 LTS ______________________________",
+    "precio": 7500,
+    "imagen": "fotos/CONSERV-10LTS.jpg"
+  },
+  {
+    "codigo": "CR1216",
+    "nombre": "KIT DE HERRAMIENTAS LLAVE  TUBOS SOCKET 216PCS -",
+    "precio": 115000,
+    "imagen": "fotos/CR1216.jpg"
+  },
+  {
+    "codigo": "estante1",
+    "nombre": "ESTANTE PARA ALACENA  34 CM X 17CM ALTO 24CM  X2U",
+    "precio": 9500,
+    "imagen": "fotos/estante1.jpg"
+  },
+  {
+    "codigo": "FR-7300",
+    "nombre": "FREIDORA ELECTRICA 1 LTS YELMO CON ACEITE  -  ____",
+    "precio": 33000,
+    "imagen": "fotos/FR-7300.jpg"
+  },
+  {
+    "codigo": "FRUTERO4",
+    "nombre": "ESTANTE FRUTERO 4 ESTANTES ORGANIZADOR ___________",
+    "precio": 18300,
+    "imagen": "fotos/FRUTERO4.jpg"
+  },
+  {
+    "codigo": "HM9020",
+    "nombre": "MICROONDAS ROTATIVO TACTIL 20 LTS YELMO  -  ______",
+    "precio": 134000,
+    "imagen": "fotos/HM9020.jpg"
+  },
+  {
+    "codigo": "HQ-KING09",
+    "nombre": "TAPPER/VIANDA DE SILICONA PLEGABLE king08 ________",
+    "precio": 6000,
+    "imagen": "fotos/HQ-KING09.jpg"
+  },
+  {
+    "codigo": "K-15-",
+    "nombre": "PAVA ELECTRICA HERVIDORA 1,5 LTS ALIEN ___________",
+    "precio": 10900,
+    "imagen": "fotos/K-15-.jpg"
+  },
+  {
+    "codigo": "Kit3botellas",
+    "nombre": "KIT 3 BOTELLAS MOTIVACIONALES - VARIOS COLORES ..",
+    "precio": 9200,
+    "imagen": "fotos/Kit3botellas.jpg"
+  },
+  {
+    "codigo": "KJH-PE10M",
+    "nombre": "TERMO ELECTRICO ACERO INOX MATE PORTATIL   _______",
+    "precio": 49500,
+    "imagen": "fotos/KJH-PE10M.jpg"
+  },
+  {
+    "codigo": "KJT-AM8021GB-",
+    "nombre": "AMOLADORA ANGULAR 820W KANJI TOOLS _______________",
+    "precio": 27000,
+    "imagen": "fotos/KJT-AM8021GB-.jpg"
+  },
+  {
+    "codigo": "LD52-7-",
+    "nombre": "DESMALEZADORA NAFTERA 52CC 1,7 HP LUSQTOFF 7B Y 7M",
+    "precio": 105000,
+    "imagen": "fotos/LD52-7-.jpg"
+  },
+  {
+    "codigo": "MATEIMPE",
+    "nombre": "MATE IMPERIAL CUERO Y ACERO INOX _________________",
+    "precio": 23600,
+    "imagen": "fotos/MATEIMPE.jpg"
+  },
+  {
+    "codigo": "MELECH-55",
+    "nombre": "SET DE UTENSILIOS DE METAL 9PCS BA-55 ____________",
+    "precio": 23800,
+    "imagen": "fotos/MELECH-55.jpg"
+  },
+  {
+    "codigo": "mopa1",
+    "nombre": "MOPA CENTRIFUGA 360 GRADOS  ______________________",
+    "precio": 11500,
+    "imagen": "fotos/mopa1.jpg"
+  },
+  {
+    "codigo": "OF-0C-01",
+    "nombre": "SILLA DE OFICINA ERGONOMICAS  - OC-001 -  ________",
+    "precio": 44000,
+    "imagen": "fotos/OF-0C-01.jpg"
+  },
+  {
+    "codigo": "PORTATERMOMAT",
+    "nombre": "PORTA TERMO Y MATE _______________________________",
+    "precio": 7900,
+    "imagen": "fotos/PORTATERMOMAT.jpg"
+  },
+  {
+    "codigo": "Q6",
+    "nombre": "TV STICK ANDROID 4K 16gb Ram Wifi ULTRA HD tv box",
+    "precio": 29500,
+    "imagen": "fotos/Q6.jpg"
+  },
+  {
+    "codigo": "R082",
+    "nombre": "PISTOLA MASAJEADORA RECARGABLE SH4047MI M12102 ___",
+    "precio": 13900,
+    "imagen": "fotos/R082.jpg"
+  },
+  {
+    "codigo": "R258520",
+    "nombre": "SILLA DE CAMPING PLEGABLE JS-7447 reposera _______",
+    "precio": 17200,
+    "imagen": "fotos/R258520.jpg"
+  },
+  {
+    "codigo": "S02952UC",
+    "nombre": "BASE DE TORTA PLATO GIRATORIO 31 CM ACERO PROF -",
+    "precio": 38800,
+    "imagen": "fotos/S02952UC.jpg"
+  },
+  {
+    "codigo": "Secaplatos",
+    "nombre": "SECA PLATOS ESCURRIDOR PARA 13 PLATOS  ___________",
+    "precio": 10800,
+    "imagen": "fotos/Secaplatos.jpg"
+  },
+  {
+    "codigo": "TEJO",
+    "nombre": "TEJO PLAYERO DE GOMA- PREMIUM ____________________",
+    "precio": 14800,
+    "imagen": "fotos/TEJO.jpg"
+  },
+  {
+    "codigo": "tenderalas",
+    "nombre": "TENDER PIE CON ALAS 7 VARILLAS 1,45 CMX75CM ALTO _",
+    "precio": 17900,
+    "imagen": "fotos/tenderalas.jpg"
+  },
+  {
+    "codigo": "TFK-HD220D--",
+    "nombre": "HELADERA 220 LTS CON DISPENSER TELEFUNKEN ________",
+    "precio": 450000,
+    "imagen": "fotos/TFK-HD220D--.jpg"
+  },
+  {
+    "codigo": "VLKITRD-",
+    "nombre": "KIT DE HERRAMIENTAS 499 EN 1 MALETIN KANJI _______",
+    "precio": 165000,
+    "imagen": "fotos/VLKITRD-.jpg"
+  },
+  {
+    "codigo": "WFVCRK305A",
+    "nombre": "ASPIRADORA ROBOT WESTINGHOUSE 3 EN 1 _____________",
+    "precio": 110000,
+    "imagen": "fotos/WFVCRK305A.jpg"
+  },
+  {
+    "codigo": "WH-SM700SB-02",
+    "nombre": "SANDWICHERA ELECTRICA WESTINGHOUSE  ______________",
+    "precio": 18500,
+    "imagen": "fotos/WH-SM700SB-02.jpg"
+  },
+  {
+    "codigo": "Wh-v2000",
+    "nombre": "PANEL CONVECTOR VITROCERAMICO WESTINGHOUSE _______",
+    "precio": 70000,
+    "imagen": "fotos/Wh-v2000.jpg"
+  },
+  {
+    "codigo": "WHHCL8188-",
+    "nombre": "CORTADORA DE PELO WESTINGHOUSE ___________________",
+    "precio": 24000,
+    "imagen": "fotos/WHHCL8188-.jpg"
+  },
+  {
+    "codigo": "WHHS3232",
+    "nombre": "PLANCHITA DE PELO 2 EN 1 WESTINGHOUSE ____________",
+    "precio": 16500,
+    "imagen": "fotos/WHHS3232.jpg"
+  },
+  {
+    "codigo": "045A-045AB",
+    "nombre": "SILLA DE ESCRITORIO GAMER PC  ____________________",
+    "precio": 109000,
+    "imagen": "fotos/045A-045AB.jpg"
+  },
+  {
+    "codigo": "BJ-183",
+    "nombre": "ORGANIZADOR Y ESCURRIDOR DE CUBIERTOS BJ-88 _____",
+    "precio": 8800,
+    "imagen": "fotos/BJ-183.jpg"
+  },
+  {
+    "codigo": "C04546LI",
+    "nombre": "KIT DE LIMPIEZA TRANSPARENTE -  __________________",
+    "precio": 8500,
+    "imagen": "fotos/C04546LI.jpg"
+  },
+  {
+    "codigo": "CARRO-PLAYERO",
+    "nombre": "CARRO PLAYERO MESA - ALUMINIO MOR -  _____________",
+    "precio": 47600,
+    "imagen": "fotos/CARRO-PLAYERO.jpg"
+  },
+  {
+    "codigo": "COMBO-WANKE",
+    "nombre": "COMBO LAVARROPAS 6KG + SECARROPAS 10KG WANKEE  ___",
+    "precio": 249000,
+    "imagen": "fotos/COMBO-WANKE.jpg"
+  },
+  {
+    "codigo": "CUBIERTOS-DUAVF",
+    "nombre": "SET DE CUBIERTOS 25 PIEZAS DUAVF _________________",
+    "precio": 11500,
+    "imagen": "fotos/CUBIERTOS-DUAVF.jpg"
+  },
+  {
+    "codigo": "K-GZ-001",
+    "nombre": "GAZEBO PLEGABLE 3X3 MTS TELA OXFORD  _____________",
+    "precio": 90000,
+    "imagen": "fotos/K-GZ-001.jpg"
+  },
+  {
+    "codigo": "L-820--",
+    "nombre": "AMOLADORA ANGULAR 720W - LUSQTOFF - ______________",
+    "precio": 36500,
+    "imagen": "fotos/L-820--.jpg"
+  },
+  {
+    "codigo": "PM002-BRZ",
+    "nombre": "SET DE MOLINILLOS SALERO Y PIMENTERO  ____________",
+    "precio": 10500,
+    "imagen": "fotos/PM002-BRZ.jpg"
+  },
+  {
+    "codigo": "REPOSERA-5POS",
+    "nombre": "REPOSERAS 5 POSICIONES REFORZADA  ________________",
+    "precio": 29500,
+    "imagen": "fotos/REPOSERA-5POS.jpg"
+  },
+  {
+    "codigo": "REPOSERA-8POS",
+    "nombre": "REPOSERA ALUMINIO MOR 8 POSICIONES _______________",
+    "precio": 29000,
+    "imagen": "fotos/REPOSERA-8POS.jpg"
+  },
+  {
+    "codigo": "SAFIRA-4PIEZAS",
+    "nombre": "SET DE BATERIA 4 PIEZAS SAFIRA MTA  ______________",
+    "precio": 44000,
+    "imagen": "fotos/SAFIRA-4PIEZAS.jpg"
+  },
+  {
+    "codigo": "SET-TURIN12P",
+    "nombre": "SET DE BATERIA 12 PIEZAS TRAMONTINA  COLORES _____",
+    "precio": 130000,
+    "imagen": "fotos/SET-TURIN12P.jpg"
+  },
+  {
+    "codigo": "SPA002-",
+    "nombre": "REPOSERA DE ALUMINIO FIJA - LAGOS -  _____________",
+    "precio": 25500,
+    "imagen": "fotos/SPA002-.jpg"
+  },
+  {
+    "codigo": "VULCAN",
+    "nombre": "PARLANTE TORRE VULCAN 2 x 15\" KEN BROWN  _________",
+    "precio": 396000,
+    "imagen": "fotos/VULCAN.jpg"
+  },
+  {
+    "codigo": "147078-009F",
+    "nombre": "TRICICLO TIPO NAVE ESPACIAL FROZEN -  ____________",
+    "precio": 76500,
+    "imagen": "fotos/147078-009F.jpg"
+  },
+  {
+    "codigo": "BOOM10",
+    "nombre": "PARLANTE TORRE BOOM 10 KEN BROWN  -  _____________",
+    "precio": 249000,
+    "imagen": "fotos/BOOM10.jpg"
+  },
+  {
+    "codigo": "DL1417",
+    "nombre": "PARLANTE TORRE CON PANTALLA ANDROID DELHI ________",
+    "precio": 850000,
+    "imagen": "fotos/DL1417.jpg"
+  },
+  {
+    "codigo": "FIREBIRD-BICI",
+    "nombre": "BICICLETA FIRE BIRD RODADO 29 ACERO MOD 2026  ____",
+    "precio": 219000,
+    "imagen": "fotos/FIREBIRD-BICI.jpg"
+  },
+  {
+    "codigo": "HDESBLK10",
+    "nombre": "MONOPATIN ELECTRICO PREMIUM HEAD _________________",
+    "precio": 1550000,
+    "imagen": "fotos/HDESBLK10.jpg"
+  },
+  {
+    "codigo": "HGAW4523PI-",
+    "nombre": "HORNO ELECTRICO GRILL 45 LTS ATMA BLANCO - _______",
+    "precio": 140000,
+    "imagen": "fotos/HGAW4523PI-.jpg"
+  },
+  {
+    "codigo": "MON350-7",
+    "nombre": "MONOPATIN ELECTRICO GRANDE 350W LUSQTOFF _________",
+    "precio": 460000,
+    "imagen": "fotos/MON350-7.jpg"
+  },
+  {
+    "codigo": "TO39DSPP",
+    "nombre": "TOSTADORA ELECTRICA SPIDERMAN ATMA _______________",
+    "precio": 35000,
+    "imagen": "fotos/TO39DSPP.jpg"
+  },
+  {
+    "codigo": "VGG245EP",
+    "nombre": "VALIJA MEDIANA 24 PULGADAS - GRIS -  -  __________",
+    "precio": 45000,
+    "imagen": "fotos/VGG245EP.jpg"
+  },
+  {
+    "codigo": "VT3820-",
+    "nombre": "VENTILADOR DE PIE 20\" YELMO  _____________________",
+    "precio": 40000,
+    "imagen": "fotos/VT3820-.jpg"
+  },
+  {
+    "codigo": "AW-CBK14",
+    "nombre": "NOTEBOOK 14,1\" AIWA 128GB - 4GB RAM WINDOWS 11 ___",
+    "precio": 250000,
+    "imagen": "fotos/AW-CBK14.jpg"
+  },
+  {
+    "codigo": "AW-T381",
+    "nombre": "PARLANTE BLUETOOTH TORRE AIWA 3x8\" _______________",
+    "precio": 115000,
+    "imagen": "fotos/AW-T381.jpg"
+  },
+  {
+    "codigo": "DB58X7550-",
+    "nombre": "SMART TV 58\" NOBLEX ANDROID TV FULL HD 4K  _______",
+    "precio": 645000,
+    "imagen": "fotos/DB58X7550-.jpg"
+  },
+  {
+    "codigo": "ET035CF",
+    "nombre": "AIRE ACONDICIONADO SPLIT 3500W FRIO CALOR ELECTRA",
+    "precio": 550000,
+    "imagen": "fotos/ET035CF.jpg"
+  },
+  {
+    "codigo": "ETI36C",
+    "nombre": "AIRE ACONDICIONADO INVERTER 3600W ELECTRA  _______",
+    "precio": 600000,
+    "imagen": "fotos/ETI36C.jpg"
+  },
+  {
+    "codigo": "HDR370F61E",
+    "nombre": "HELADERA DREAN 362 LTS CICLICA CON DISPENSER  ____",
+    "precio": 670000,
+    "imagen": "fotos/HDR370F61E.jpg"
+  },
+  {
+    "codigo": "RT1N205NEW1",
+    "nombre": "HELADERA CON FREEZER HISENSE 205 LTS CICLICA _____",
+    "precio": 400000,
+    "imagen": "fotos/RT1N205NEW1.jpg"
+  },
+  {
+    "codigo": "SH3682MI",
+    "nombre": "RED DE PING PONG PLEGABLE PLASTICO  175 X 14 CM -",
+    "precio": 9500,
+    "imagen": "fotos/SH3682MI.jpg"
+  },
+  {
+    "codigo": "LAB06W",
+    "nombre": "LAVARROPAS AUTOMATICO 6KG BGH INVERT BWEF06W24AR _",
+    "precio": 430000,
+    "imagen": "fotos/LAB06W.jpg"
+  },
+  {
+    "codigo": "LAB106SS",
+    "nombre": "LAVARROPAS AUTOMATICO BGH 6KG Bwfe06s24ar ________",
+    "precio": 455000,
+    "imagen": "fotos/LAB106SS.jpg"
+  },
+  {
+    "codigo": "SBL6500BT",
+    "nombre": "PARLANTE TORRE CROWN MUSTANG SBL 6500BT -  _______",
+    "precio": 239000,
+    "imagen": "fotos/SBL6500BT.jpg"
+  },
+  {
+    "codigo": "WTJA802T",
+    "nombre": "LAVARROPAS CARGA SUPERIOR 6KG HISENSE TITANIUM ___",
+    "precio": 395000,
+    "imagen": "fotos/WTJA802T.jpg"
+  },
+  {
+    "codigo": "CONSERV-HELAFRIO",
+    "nombre": "CONSERVADORA 34 LTS HELAFRIO  ____________________",
+    "precio": 15500,
+    "imagen": "fotos/CONSERV-HELAFRIO.jpg"
+  },
+  {
+    "codigo": "KJ-32MT005-2",
+    "nombre": "SMART TV 32\" KANJI ANDRID TV FULL HD- - __________",
+    "precio": 190000,
+    "imagen": "fotos/KJ-32MT005-2.jpg"
+  },
+  {
+    "codigo": "PE1821NAP-",
+    "nombre": "PAVA ELECTRICA CON CORTE MATE - ATMA - NEGRA _____",
+    "precio": 34000,
+    "imagen": "fotos/PE1821NAP-.jpg"
+  },
+  {
+    "codigo": "SMART-50-KODAK",
+    "nombre": "SMART TV 50\" KODAK GOOGLE TV FULL HD 4K- _________",
+    "precio": 430000,
+    "imagen": "fotos/SMART-50-KODAK.jpg"
+  },
+  {
+    "codigo": "WE-32MT005",
+    "nombre": "SMART TV 32\" KODAK - GOOGLE TV - FULL HD  - ______",
+    "precio": 190000,
+    "imagen": "fotos/WE-32MT005.jpg"
+  },
+  {
+    "codigo": "ACL2TS100",
+    "nombre": "ACEITE 2T SINTETICO 100CC LUSQTOFF _______________",
+    "precio": 3200,
+    "imagen": "fotos/ACL2TS100.jpg"
+  },
+  {
+    "codigo": "BL600-8-",
+    "nombre": "BORDEADORA DE CESPED 600W LUSQTOFF  ______________",
+    "precio": 69600,
+    "imagen": "fotos/BL600-8-.jpg"
+  },
+  {
+    "codigo": "CPM150",
+    "nombre": "BOMBA PERIFERICA 220V 0,5HP 370W LUSQTOFF ________",
+    "precio": 36500,
+    "imagen": "fotos/CPM150.jpg"
+  },
+  {
+    "codigo": "GP2500",
+    "nombre": "GENERADOR NAFTERO 2500W - GARDENPLUS LUSQTOFF ____",
+    "precio": 210000,
+    "imagen": "fotos/GP2500.jpg"
+  },
+  {
+    "codigo": "HL100-7",
+    "nombre": "HIDROLAVADORA ALTA PRESION 1200W 100BAR LUSQTOFF _",
+    "precio": 75000,
+    "imagen": "fotos/HL100-7.jpg"
+  },
+  {
+    "codigo": "IL150-8",
+    "nombre": "INFLADOR INALAMBRICO CON MEDIDOR DIG LUSQTOFF ____",
+    "precio": 74500,
+    "imagen": "fotos/IL150-8.jpg"
+  },
+  {
+    "codigo": "L4902",
+    "nombre": "JUEGO DE 20 HERRAMIENTAS LUSQTOFF ________________",
+    "precio": 51000,
+    "imagen": "fotos/L4902.jpg"
+  },
+  {
+    "codigo": "L4904",
+    "nombre": "JUEGO DE 67 HERRAMIENTAS LUSQTOFF ________________",
+    "precio": 67500,
+    "imagen": "fotos/L4904.jpg"
+  },
+  {
+    "codigo": "L4906",
+    "nombre": "JUEGO DE 14 HERRAMIENTAS LUSQTOFF ________________",
+    "precio": 25500,
+    "imagen": "fotos/L4906.jpg"
+  },
+  {
+    "codigo": "L4912",
+    "nombre": "JUEGO DE 10 HERRAMIENTAS LUSQTOFF ________________",
+    "precio": 30000,
+    "imagen": "fotos/L4912.jpg"
+  },
+  {
+    "codigo": "L4914",
+    "nombre": "JUEGO DE 15 HERRAMIENTAS LUSQTOFF ________________",
+    "precio": 23500,
+    "imagen": "fotos/L4914.jpg"
+  },
+  {
+    "codigo": "LA-1500MM",
+    "nombre": "ASPIRADORA INDUSTRIAL 1400W 15 LTS LUSQTOFF ______",
+    "precio": 69000,
+    "imagen": "fotos/LA-1500MM.jpg"
+  },
+  {
+    "codigo": "LA1400M--",
+    "nombre": "ASPIRADORA ELECTRICA 25 LTS - 1400W - LUSQTOFF ___",
+    "precio": 120000,
+    "imagen": "fotos/LA1400M--.jpg"
+  },
+  {
+    "codigo": "LCO1203-8B",
+    "nombre": "CORTADORA DE CESPED ELECTRICA 1200W LUSQTOFF _____",
+    "precio": 150000,
+    "imagen": "fotos/LCO1203-8B.jpg"
+  },
+  {
+    "codigo": "LG3000E",
+    "nombre": "GENERADOR NAFTERO 2500W 2.8KW 6,5HP LUSQTOFF _____",
+    "precio": 440000,
+    "imagen": "fotos/LG3000E.jpg"
+  },
+  {
+    "codigo": "LG3500EX",
+    "nombre": "GENERADOR NAFTERO 3500W LUSQTOFF _________________",
+    "precio": 500000,
+    "imagen": "fotos/LG3500EX.jpg"
+  },
+  {
+    "codigo": "LPS15-8.5Z",
+    "nombre": "BOMBA PRESURIZADORA 8.5M - 0,13 HP - 100W LUSQTOFF",
+    "precio": 36500,
+    "imagen": "fotos/LPS15-8.5Z.jpg"
+  },
+  {
+    "codigo": "LQ-IONSOL",
+    "nombre": "IONIZADOR SOLAR PARA PILETAS LUSQTOFF ____________",
+    "precio": 45000,
+    "imagen": "fotos/LQ-IONSOL.jpg"
+  },
+  {
+    "codigo": "LQ500-",
+    "nombre": "CORTADORA DE CESPED NAFTERA A EXPLOSION LUSQTOFF _",
+    "precio": 325000,
+    "imagen": "fotos/LQ500-.jpg"
+  },
+  {
+    "codigo": "LQC-70",
+    "nombre": "CARRO PLEGABLE HASTA 70KG LUSQTOFF _______________",
+    "precio": 43000,
+    "imagen": "fotos/LQC-70.jpg"
+  },
+  {
+    "codigo": "LQC2-",
+    "nombre": "CRIQUET CARRITO GATO 2 TONELADAS LUSQTOFF ________",
+    "precio": 46500,
+    "imagen": "fotos/LQC2-.jpg"
+  },
+  {
+    "codigo": "LTF-6308R",
+    "nombre": "TERMOFUSORA 220V - 50HZ 800W LUSQTOFF ____________",
+    "precio": 36000,
+    "imagen": "fotos/LTF-6308R.jpg"
+  },
+  {
+    "codigo": "MEGAIRON140--",
+    "nombre": "SOLDADORA INVERTER LUSQTOFF MEGAIRON140 __________",
+    "precio": 155000,
+    "imagen": "fotos/MEGAIRON140--.jpg"
+  },
+  {
+    "codigo": "MEGAIRON180-9--",
+    "nombre": "SOLDADORA INVERTER LUSQTOFF MEGAIRON180 KIT ______",
+    "precio": 170000,
+    "imagen": "fotos/MEGAIRON180-9--.jpg"
+  },
+  {
+    "codigo": "SAL3TON-7",
+    "nombre": "SOPORTE PARA AUTO 3 TONELADAS LUSQTOFF CABALLETE _",
+    "precio": 39500,
+    "imagen": "fotos/SAL3TON-7.jpg"
+  },
+  {
+    "codigo": "SCL710-8",
+    "nombre": "SIERRA CALADORA PROFESIONAL 710W LUSQTOFF ________",
+    "precio": 78000,
+    "imagen": "fotos/SCL710-8.jpg"
+  },
+  {
+    "codigo": "SHL150-9",
+    "nombre": "SET DE HERRAMIENTAS 150 PIEZAS RACING LUSQTOFF  __",
+    "precio": 245000,
+    "imagen": "fotos/SHL150-9.jpg"
+  },
+  {
+    "codigo": "TFK-WMCFSL-",
+    "nombre": "LAVARROPAS AUTOMATICO 6KG INVERTER TELEFUNKEN  - _",
+    "precio": 360000,
+    "imagen": "fotos/TFK-WMCFSL-.jpg"
+  },
+  {
+    "codigo": "TIL23-8KB--",
+    "nombre": "KIT TALADRO ATORNILLADOR 12V LUSQTOFF ____________",
+    "precio": 75000,
+    "imagen": "fotos/TIL23-8KB--.jpg"
+  },
+  {
+    "codigo": "TPL710-8--",
+    "nombre": "TALADRO PERCUTOR 710W LUSQTOFF ___________________",
+    "precio": 45000,
+    "imagen": "fotos/TPL710-8--.jpg"
+  },
+  {
+    "codigo": "Bwfi08w24ar",
+    "nombre": "LAVARROPAS BGH AUTOMATICO 8KG INVERTER BWFE08W24AR",
+    "precio": 545000,
+    "imagen": "fotos/Bwfi08w24ar.jpg"
+  },
+  {
+    "codigo": "32PHD6929",
+    "nombre": "SMART TV PHILIPS 32\" FULL HD SIST OP TITAN  ______",
+    "precio": 190000,
+    "imagen": "fotos/32PHD6929.jpg"
+  },
+  {
+    "codigo": "Bwfe08s24ar--",
+    "nombre": "LAVARRROPAS AUTOMATICO 8KG BGH INVERTER SILVER ___",
+    "precio": 575000,
+    "imagen": "fotos/Bwfe08s24ar--.jpg"
+  },
+  {
+    "codigo": "JS-52",
+    "nombre": "AURICULAR INALAMBRICO CON POWER BANK _____________",
+    "precio": 8800,
+    "imagen": "fotos/JS-52.jpg"
+  },
+  {
+    "codigo": "SOLARCO10FUN",
+    "nombre": "PILETA DE LONA 5500 LTS - SOL DE VERANO - ________",
+    "precio": 210000,
+    "imagen": "fotos/SOLARCO10FUN.jpg"
+  },
+  {
+    "codigo": "2017A1N",
+    "nombre": "BALANZA PERSONAL DIGITAL NEGRA ALIEN _____________",
+    "precio": 8800,
+    "imagen": "fotos/2017A1N.jpg"
+  },
+  {
+    "codigo": "A0715",
+    "nombre": "STITCH COLECCION SWEET DREAMS peluche ____________",
+    "precio": 9000,
+    "imagen": "fotos/A0715.jpg"
+  },
+  {
+    "codigo": "AL-6407-",
+    "nombre": "CONSOLA GAME STICK RETRO + PS2 - 10.000 JUEGOS ___",
+    "precio": 32000,
+    "imagen": "fotos/AL-6407-.jpg"
+  },
+  {
+    "codigo": "AL-6411-",
+    "nombre": "CONSOLA 2 EN 1 - GAME STICK + TV STICK  __________",
+    "precio": 38000,
+    "imagen": "fotos/AL-6411-.jpg"
+  },
+  {
+    "codigo": "BALANZA-ALIEN-RO",
+    "nombre": "BALANZA COMERCIAL ROJA CON TORRE TS-817 __________",
+    "precio": 43000,
+    "imagen": "fotos/BALANZA-ALIEN-RO.jpg"
+  },
+  {
+    "codigo": "CT-804",
+    "nombre": "Consola Portatil Sega 16 Bits Con Juegos + Cartuch",
+    "precio": 21000,
+    "imagen": "fotos/CT-804.jpg"
+  },
+  {
+    "codigo": "HIDRO-ALIEN",
+    "nombre": "HIDROLAVADORA PORTATIL INALAMBRICA  RY1000 _______",
+    "precio": 34500,
+    "imagen": "fotos/HIDRO-ALIEN.jpg"
+  },
+  {
+    "codigo": "PHL-17218",
+    "nombre": "PILETA INFABLE 95 LTS - 3 ANILLOS DE COLORES  ____",
+    "precio": 13500,
+    "imagen": "fotos/PHL-17218.jpg"
+  },
+  {
+    "codigo": "PHL-17544",
+    "nombre": "PILETA INFLABLE 425 LTS ANIMALES MARINOS _________",
+    "precio": 24000,
+    "imagen": "fotos/PHL-17544.jpg"
+  },
+  {
+    "codigo": "PHL-27131",
+    "nombre": "COLCHONETA INFABLE CON APOYA VASO ________________",
+    "precio": 13000,
+    "imagen": "fotos/PHL-27131.jpg"
+  },
+  {
+    "codigo": "PHL-32206",
+    "nombre": "BRACITOS FLOTADORES CANGREJO _____________________",
+    "precio": 4000,
+    "imagen": "fotos/PHL-32206.jpg"
+  },
+  {
+    "codigo": "PHL-32271",
+    "nombre": "BRACITOS FLOTADORES UNICORNIO  ___________________",
+    "precio": 4000,
+    "imagen": "fotos/PHL-32271.jpg"
+  },
+  {
+    "codigo": "PHL-33151",
+    "nombre": "RED DE VOLEY INFABLE PARA PILETA _________________",
+    "precio": 20000,
+    "imagen": "fotos/PHL-33151.jpg"
+  },
+  {
+    "codigo": "PHL-35182",
+    "nombre": "ASIENTO SALVAVIDAS FLOTADOR UNICORNIO  ___________",
+    "precio": 9500,
+    "imagen": "fotos/PHL-35182.jpg"
+  },
+  {
+    "codigo": "PHL-35487",
+    "nombre": "INFLADOR COLHONETA AVION  ________________________",
+    "precio": 15000,
+    "imagen": "fotos/PHL-35487.jpg"
+  },
+  {
+    "codigo": "PHL-37243",
+    "nombre": "ASIENTO SALVAVIDAS INFLABLE FLOTADOR CON TECHITO _",
+    "precio": 12000,
+    "imagen": "fotos/PHL-37243.jpg"
+  },
+  {
+    "codigo": "PHL-51340",
+    "nombre": "INFABLE ARCO Y PELOTA PILETA _____________________",
+    "precio": 20000,
+    "imagen": "fotos/PHL-51340.jpg"
+  },
+  {
+    "codigo": "PHL-51459",
+    "nombre": "PILETA INFABLE 143LTS CON LUNARES DE COLORES _____",
+    "precio": 10000,
+    "imagen": "fotos/PHL-51459.jpg"
+  },
+  {
+    "codigo": "PHL-57140",
+    "nombre": "PILETA ESTRUCTURAL REDONDA 226 LTS _______________",
+    "precio": 13500,
+    "imagen": "fotos/PHL-57140.jpg"
+  },
+  {
+    "codigo": "PHL-57155",
+    "nombre": "PILETA INFLABLE 40 LTS CON ARCOIRIS ______________",
+    "precio": 23500,
+    "imagen": "fotos/PHL-57155.jpg"
+  },
+  {
+    "codigo": "SM-8808",
+    "nombre": "SANDWICHERA ELECTRICA ALIEN ______________________",
+    "precio": 16500,
+    "imagen": "fotos/SM-8808.jpg"
+  },
+  {
+    "codigo": "X10MAX",
+    "nombre": "Proyector Gamer Ultra Hd Wifi Android Joystick 4k",
+    "precio": 90000,
+    "imagen": "fotos/X10MAX.jpg"
+  },
+  {
+    "codigo": "X96Q-",
+    "nombre": "CONVERTIDOR A SMART TV - TV BOX ALIEN ____________",
+    "precio": 27000,
+    "imagen": "fotos/X96Q-.jpg"
+  },
+  {
+    "codigo": "YQ-201K-1S-",
+    "nombre": "ANAFE ELECTRICO VITROCERAMICO ALIEN  _____________",
+    "precio": 34500,
+    "imagen": "fotos/YQ-201K-1S-.jpg"
+  },
+  {
+    "codigo": "DAFCB001-B-",
+    "nombre": "DISPENSER DE AGUA BIDON FRIO - CALIENTE - ________",
+    "precio": 165000,
+    "imagen": "fotos/DAFCB001-B-.jpg"
+  },
+  {
+    "codigo": "DAFCB022-R",
+    "nombre": "DISPENSER DE AGUA RED - FRIO - CALIENTE  _________",
+    "precio": 170000,
+    "imagen": "fotos/DAFCB022-R.jpg"
+  },
+  {
+    "codigo": "KJ-CAMPMC01",
+    "nombre": "MESA CUADRADA PLEGABLE GRANDE - GRIS O BLANCA  ___",
+    "precio": 80000,
+    "imagen": "fotos/KJ-CAMPMC01.jpg"
+  },
+  {
+    "codigo": "KJ-CAMPRED01W",
+    "nombre": "MESA PLEGABLE GRANDE CIRCULAR 122 CM X 74CM  _____",
+    "precio": 97500,
+    "imagen": "fotos/KJ-CAMPRED01W.jpg"
+  },
+  {
+    "codigo": "KJH-FI2415001",
+    "nombre": "VENTILADOR SEMI INDUSTRIAL 24\" 2 EN 1 KANJI ______",
+    "precio": 98000,
+    "imagen": "fotos/KJH-FI2415001.jpg"
+  },
+  {
+    "codigo": "KJH-FI3020001",
+    "nombre": "VENTILADOR INDUSTRIAL 30\" 2 EN 1 KANJI ___________",
+    "precio": 109000,
+    "imagen": "fotos/KJH-FI3020001.jpg"
+  },
+  {
+    "codigo": "KJW-INF01",
+    "nombre": "INFLADOR MULTIUSO PORTATIL PREMIUM  ______________",
+    "precio": 40000,
+    "imagen": "fotos/KJW-INF01.jpg"
+  }
+]

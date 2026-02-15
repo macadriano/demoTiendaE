@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>TiendaE - Tienda de Electros y más</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+  <!-- Navbar Bootstrap -->
+  <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom sticky-top shadow-sm">
+    <div class="container-fluid px-3 px-md-4">
+      <a href="#/" class="navbar-brand d-flex align-items-center gap-2 text-primary fw-bold">
+        <img src="img/logo-tiendae.svg" alt="TiendaE" height="32">
+        <span>TiendaE</span>
+      </a>
+      <a href="#/carrito" id="navCarritoMobile" class="btn btn-outline-primary btn-sm position-relative d-md-none me-2" aria-label="Carrito">
+        🛒 <span class="cart-count badge bg-primary rounded-pill" data-count="0">0</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto align-items-md-center gap-1 gap-md-2">
+          <li class="nav-item"><a class="nav-link" href="#/">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#/productos">Productos</a></li>
+          <li class="nav-item d-none d-md-block" id="navCarritoDesktop">
+            <a href="#/carrito" class="nav-link position-relative">Carrito <span class="cart-count badge bg-primary rounded-pill" data-count="0">0</span></a>
+          </li>
+        </ul>
+        <div class="d-flex flex-column flex-md-row align-items-stretch align-items-md-center gap-2 mt-2 mt-md-0" id="navAuth">
+          <a href="#/login" class="btn btn-outline-primary btn-sm">Entrar</a>
+          <a href="#/registro" class="btn btn-primary btn-sm">Registrarse</a>
+        </div>
+        <div class="d-none d-flex flex-md-row align-items-center gap-2 mt-2 mt-md-0" id="navLogged">
+          <span class="nav-link p-0 text-muted small me-1" id="navUserName"></span>
+          <a href="#/mis-pedidos" class="nav-link p-0" id="navMisPedidos">Mis pedidos</a>
+          <a href="#/administracion" class="nav-link p-0 fw-semibold text-primary d-none" id="navAdministracion">Administración</a>
+          <button type="button" class="btn btn-outline-secondary btn-sm" id="btnLogout">Salir</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="app" class="flex-grow-1 py-3 py-md-4 w-100">
+    <!-- Vista: Inicio -->
+    <section id="view-home" class="view w-100">
+      <div class="bg-primary bg-opacity-10 py-5">
+        <div class="container-fluid px-3 px-md-4">
+          <div class="row align-items-center g-4">
+            <div class="col-12 col-lg-6 order-2 order-lg-1 text-center text-lg-start">
+              <h1 class="display-6 fw-bold text-primary mb-3">Electros y más, en un solo lugar</h1>
+              <p class="lead text-muted mb-4">TiendaE es tu tienda de electrónica, electrodomésticos y productos para el hogar. Encontrá las mejores ofertas y comprá con seguridad.</p>
+              <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-lg-start">
+                <a href="#/productos" class="btn btn-primary btn-lg">Ver catálogo</a>
+                <a href="#/productos" class="btn btn-outline-primary btn-lg">Ofertas</a>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6 order-1 order-lg-2 text-center">
+              <img src="img/hero-tiendae.svg" alt="Compras online" class="img-fluid" style="max-height:280px">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid px-3 px-md-4 py-5">
+        <h2 class="h4 fw-bold mb-4">Productos destacados</h2>
+        <div id="homeProducts" class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3"></div>
+        <p class="text-center mt-4"><a href="#/productos" class="btn btn-link text-primary fw-semibold">Ver todos los productos →</a></p>
+      </div>
+    </section>
+
+    <!-- Vista: Productos -->
+    <section id="view-productos" class="view w-100" style="display:none">
+      <div class="container-fluid px-3 px-md-4 py-3">
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start gap-3 mb-4">
+          <h1 class="h4 fw-bold mb-0">Catálogo <span id="productosCount" class="text-muted fw-normal">(0)</span></h1>
+          <div class="w-100 w-sm-auto" style="max-width:320px">
+            <input type="search" id="searchProducts" class="form-control form-control-sm" placeholder="Buscar por nombre o código...">
+          </div>
+        </div>
+        <div id="productosGrid" class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-3"></div>
+        <p id="productosEmpty" class="text-center text-muted py-5" style="display:none">No hay productos que coincidan con la búsqueda.</p>
+      </div>
+    </section>
+
+    <!-- Vista: Detalle producto -->
+    <section id="view-producto" class="view w-100" style="display:none">
+      <div class="container-fluid px-3 px-md-4 py-4">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8">
+            <div id="productoDetail" class="row g-4"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vista: Carrito -->
+    <section id="view-carrito" class="view w-100" style="display:none">
+      <div class="container-fluid px-3 px-md-4 py-4">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-8">
+            <h1 class="h4 fw-bold mb-4">Tu carrito</h1>
+            <div id="carritoContent"></div>
+            <div id="carritoEmpty" class="alert alert-light text-center">El carrito está vacío. <a href="#/productos" class="alert-link">Ver productos</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vista: Checkout -->
+    <section id="view-checkout" class="view w-100" style="display:none">
+      <div class="container-fluid px-3 px-md-4 py-4">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-8">
+            <h1 class="h4 fw-bold mb-4">Finalizar compra</h1>
+            <div id="checkoutContent"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vista: Login -->
+    <section id="view-login" class="view w-100" style="display:none">
+      <div class="container-fluid px-3 px-md-4 py-4">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-10 col-md-6 col-lg-5">
+            <div class="card shadow-sm">
+              <div class="card-body p-4">
+                <h1 class="h5 fw-bold mb-4">Iniciar sesión</h1>
+                <form id="formLogin">
+                  <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Contraseña</label>
+                    <div class="input-group">
+                      <input type="password" name="password" class="form-control" required id="loginPassword">
+                      <button type="button" class="btn btn-outline-secondary" aria-label="Mostrar contraseña" onclick="var i=document.getElementById('loginPassword'); i.type=i.type==='password'?'text':'password'; this.textContent=i.type==='password'?'Ver':'Ocultar'; this.setAttribute('aria-label', i.type==='password'?'Mostrar contraseña':'Ocultar contraseña');">Ver</button>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                </form>
+                <p class="text-muted small text-center mt-3 mb-0">¿No tenés cuenta? <a href="#/registro">Registrarse</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vista: Registro -->
+    <section id="view-registro" class="view w-100" style="display:none">
+      <div class="container-fluid px-3 px-md-4 py-4">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-10 col-md-6 col-lg-5">
+            <div class="card shadow-sm">
+              <div class="card-body p-4">
+                <h1 class="h5 fw-bold mb-4">Crear cuenta</h1>
+                <form id="formRegistro">
+                  <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Contraseña</label>
+                    <div class="input-group">
+                      <input type="password" name="password" class="form-control" required minlength="6" id="registroPassword">
+                      <button type="button" class="btn btn-outline-secondary" aria-label="Mostrar contraseña" onclick="var i=document.getElementById('registroPassword'); i.type=i.type==='password'?'text':'password'; this.textContent=i.type==='password'?'Ver':'Ocultar'; this.setAttribute('aria-label', i.type==='password'?'Mostrar contraseña':'Ocultar contraseña');">Ver</button>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Nombre (opcional)</label>
+                    <input type="text" name="nombre" class="form-control">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Teléfono (opcional)</label>
+                    <input type="tel" name="telefono" class="form-control">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Dirección (opcional)</label>
+                    <input type="text" name="direccion" class="form-control">
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100">Registrarme</button>
+                </form>
+                <p class="text-muted small text-center mt-3 mb-0">¿Ya tenés cuenta? <a href="#/login">Iniciar sesión</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vista: Mis pedidos -->
+    <section id="view-mis-pedidos" class="view w-100" style="display:none">
+      <div class="container-fluid px-3 px-md-4 py-4">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-8">
+            <h1 class="h4 fw-bold mb-4">Mis pedidos</h1>
+            <div id="misPedidosContent"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vista: Gracias -->
+    <section id="view-gracias" class="view w-100" style="display:none">
+      <div class="container-fluid px-3 px-md-4 py-5 text-center">
+        <h1 class="h4 fw-bold mb-2">¡Gracias por tu compra!</h1>
+        <p class="text-muted mb-4">Tu pedido fue recibido. Te contactaremos para el envío.</p>
+        <a href="#/" class="btn btn-primary">Seguir comprando</a>
+      </div>
+    </section>
+
+    <!-- Vista: Administración (solo staff) -->
+    <section id="view-administracion" class="view w-100" style="display:none">
+      <div class="container-fluid px-3 px-md-4 py-4">
+        <h1 class="h4 fw-bold mb-4">Administración</h1>
+        <div class="row g-3">
+          <div class="col-12 col-md-6 col-lg-4">
+            <a href="#/administracion/claves" class="text-decoration-none text-dark">
+              <div class="card shadow-sm h-100">
+                <div class="card-body">
+                  <h2 class="h6 fw-bold">Claves y usuarios</h2>
+                  <p class="small text-muted mb-0">Regenerar claves de clientes y staff. Crear nuevo usuario staff.</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <a href="#/administracion/pedidos" class="text-decoration-none text-dark">
+              <div class="card shadow-sm h-100">
+                <div class="card-body">
+                  <h2 class="h6 fw-bold">Pedidos</h2>
+                  <p class="small text-muted mb-0">Gestionar pedidos, estados, envíos y WhatsApp.</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <a href="#/administracion/productos" class="text-decoration-none text-dark">
+              <div class="card shadow-sm h-100">
+                <div class="card-body">
+                  <h2 class="h6 fw-bold">Productos</h2>
+                  <p class="small text-muted mb-0">CRUD de productos, fotos y categorías.</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-administracion-claves" class="view w-100" style="display:none">
+      <div class="container-fluid px-3 px-md-4 py-4">
+        <p class="mb-3"><a href="#/administracion" class="text-primary small">← Volver a Administración</a></p>
+        <h1 class="h4 fw-bold mb-4">Claves y usuarios</h1>
+        <div id="adminClavesContent"></div>
+      </div>
+    </section>
+
+    <section id="view-administracion-pedidos" class="view w-100" style="display:none">
+      <div class="container-fluid px-3 px-md-4 py-4">
+        <p class="mb-3"><a href="#/administracion" class="text-primary small">← Volver a Administración</a></p>
+        <h1 class="h4 fw-bold mb-4">Gestión de pedidos</h1>
+        <div id="adminPedidosContent"></div>
+      </div>
+    </section>
+
+    <section id="view-administracion-productos" class="view w-100" style="display:none">
+      <div class="container-fluid px-3 px-md-4 py-4">
+        <p class="mb-3"><a href="#/administracion" class="text-primary small">← Volver a Administración</a></p>
+        <h1 class="h4 fw-bold mb-4">Administración de productos</h1>
+        <div id="adminProductosContent"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-primary text-white mt-auto py-4 w-100">
+    <div class="container-fluid px-3 px-md-4">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+        <div class="d-flex align-items-center gap-2">
+          <img src="img/logo-tiendae.svg" alt="TiendaE" height="24" class="opacity-75">
+          <span class="fw-semibold">TiendaE - Tienda de Electros y más</span>
+        </div>
+        <div class="d-flex gap-3">
+          <a href="#/productos" class="text-white text-decoration-none">Productos</a>
+          <a href="#/login" class="text-white text-decoration-none">Mi cuenta</a>
+          <a href="/staff.html" class="text-white text-decoration-none">Personal</a>
+          <a href="/admin-productos.html" class="text-white text-decoration-none">Admin productos</a>
+        </div>
+      </div>
+      <p class="text-white-50 small mb-0 mt-3 text-center text-md-start">&copy; TiendaE. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Toasts personalizados -->
+  <div id="toastContainer" class="toast-container-tiendae" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
