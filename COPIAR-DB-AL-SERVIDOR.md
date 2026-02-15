@@ -39,4 +39,6 @@ pm2 start tiendae
 
 Listo: en el servidor deberías poder entrar con los mismos usuarios que en tu PC.
 
+**Importante:** Hacé `pm2 stop` antes de reemplazar `tiendae.db` y `pm2 start` después. Si reemplazás el archivo con la app corriendo, el proceso puede seguir usando la base antigua y el catálogo no mostrará los productos de la DB.
+
 **Nota:** Si después creás usuarios o pedidos solo en el servidor, esa base ya no será igual a la de tu PC. Podés repetir este proceso cuando quieras “sincronizar” de nuevo desde tu PC.

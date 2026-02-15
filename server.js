@@ -83,11 +83,15 @@ function getProductosPublic(categoriaFilter) {
   const dbRows = db.prepare(`
     SELECT p.id, p.codigo, p.nombre, p.precio, p.descripcion, p.created_at, c.nombre as categoria_nombre
     FROM productos p
-    JOIN categorias c ON c.id = p.categoria_id
+    LEFT JOIN categorias c ON c.id = p.categoria_id
     WHERE (p.deleted_at IS NULL)
   `).all();
+  const codigosEnLista = new Set(list.map(x => (x.codigo || '').toString().toLowerCase()));
   for (const r of dbRows) {
-    if (categoriaFilter && r.categoria_nombre !== categoriaFilter) continue;
+    const catNombre = r.categoria_nombre || 'Electros';
+    if (categoriaFilter && catNombre !== categoriaFilter) continue;
+    if (codigosEnLista.has((r.codigo || '').toString().toLowerCase())) continue;
+    codigosEnLista.add((r.codigo || '').toString().toLowerCase());
     const imagenes = db.prepare('SELECT ruta FROM producto_imagenes WHERE producto_id = ? ORDER BY orden, id').all(r.id).map(i => i.ruta);
     list.push({
       id: r.id,
@@ -95,7 +99,7 @@ function getProductosPublic(categoriaFilter) {
       nombre: r.nombre,
       precio: r.precio,
       descripcion: r.descripcion || null,
-      categoria: r.categoria_nombre,
+      categoria: catNombre,
       imagenUrl: imagenes[0] || '',
       imagenes: imagenes.length ? imagenes : [],
       created_at: r.created_at
