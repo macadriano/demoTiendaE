@@ -35,6 +35,10 @@
     return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(n);
   }
 
+  function escapeHtml(s) {
+    return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
   function imgWithLoader(src, alt, opts) {
     if (!src) return '';
     opts = opts || {};
@@ -45,7 +49,7 @@
     var loading = opts.loading === false ? '' : ' loading="lazy"';
     return '<div class="img-load-wrap ' + wrapClass + '">' +
       '<div class="img-load-spinner" aria-hidden="true"></div>' +
-      '<img src="' + String(src).replace(/"/g, '&quot;') + '" alt="' + String(alt || '').replace(/"/g, '&quot;') + '"' + loading + ' onload="this.parentElement.classList.add(\'loaded\')" onerror="' + onerr + '"' + (imgClass ? ' class="' + imgClass + '"' : '') + (imgStyle ? ' style="' + imgStyle + '"' : '') + '>';
+      '<img src="' + String(src).replace(/"/g, '&quot;') + '" alt="' + escapeHtml(alt) + '"' + loading + ' onload="this.parentElement.classList.add(\'loaded\')" onerror="' + onerr + '"' + (imgClass ? ' class="' + imgClass + '"' : '') + (imgStyle ? ' style="' + imgStyle + '"' : '') + '>';
   }
 
   function authHeaders() {
@@ -89,27 +93,34 @@
   }
 
   function renderProductCard(p, compact) {
-    var nombre = (p.nombre || '').trim().replace(/\s*_+$/g, '');
-    var imgSrc = (p.imagenes && p.imagenes[0]) ? p.imagenes[0] : (p.imagenUrl || p.imagen || '');
-    var codigo = encodeURIComponent(p.codigo);
-    var imgAttr = (imgSrc ? ' data-imagen="' + String(imgSrc).replace(/"/g, '&quot;') + '"' : '');
-    var cardImg = imgSrc ? imgWithLoader(imgSrc, nombre, { wrapClass: 'ratio-fill', imgClass: 'card-img-top p-2', onerror: "this.src='/fotos/ET_" + (p.codigo || '').replace(/'/g, "\\'") + ".jpg'; this.onerror=null;" }) : '<div class="position-absolute top-0 start-0 w-100 h-100 bg-light d-flex align-items-center justify-content-center"><span class="text-muted small">Sin imagen</span></div>';
-    return '<div class="col">' +
-      '<div class="card h-100 shadow-sm">' +
-        '<a href="#/producto/' + codigo + '" class="text-decoration-none text-dark">' +
-          '<div class="ratio ratio-1x1 bg-light position-relative">' +
-            cardImg +
+    try {
+      var nombre = (p.nombre || '').trim().replace(/\s*_+$/g, '');
+      var codigoSafe = String(p.codigo != null ? p.codigo : '').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+      var imgSrc = (p.imagenes && p.imagenes[0]) ? p.imagenes[0] : (p.imagenUrl || p.imagen || '');
+      var codigo = encodeURIComponent(p.codigo != null ? p.codigo : '');
+      var imgAttr = (imgSrc ? ' data-imagen="' + String(imgSrc).replace(/"/g, '&quot;') + '"' : '');
+      var onerrorFallback = "this.src='/fotos/ET_" + (p.codigo != null ? String(p.codigo).replace(/\\/g, '\\\\').replace(/'/g, "\\'") : '') + ".jpg'; this.onerror=null;";
+      var cardImg = imgSrc ? imgWithLoader(imgSrc, nombre, { wrapClass: 'ratio-fill', imgClass: 'card-img-top p-2', onerror: onerrorFallback }) : '<div class="position-absolute top-0 start-0 w-100 h-100 bg-light d-flex align-items-center justify-content-center"><span class="text-muted small">Sin imagen</span></div>';
+      var precio = typeof p.precio === 'number' ? p.precio : parseFloat(p.precio) || 0;
+      return '<div class="col">' +
+        '<div class="card h-100 shadow-sm">' +
+          '<a href="#/producto/' + codigo + '" class="text-decoration-none text-dark">' +
+            '<div class="ratio ratio-1x1 bg-light position-relative">' +
+              cardImg +
+            '</div>' +
+            '<div class="card-body d-flex flex-column p-2 p-sm-3">' +
+              '<h3 class="card-title small fw-semibold text-truncate mb-1" title="' + escapeHtml(nombre) + '">' + escapeHtml(nombre) + '</h3>' +
+              '<p class="card-text text-primary fw-bold mb-2">' + formatPrice(precio) + '</p>' +
+            '</div>' +
+          '</a>' +
+          '<div class="card-footer border-0 bg-white p-2 p-sm-3 pt-0">' +
+            '<button type="button" class="btn btn-primary btn-sm w-100 add-to-cart" data-codigo="' + codigoSafe + '" data-nombre="' + String(nombre).replace(/"/g, '&quot;') + '" data-precio="' + precio + '"' + imgAttr + '>Agregar</button>' +
           '</div>' +
-          '<div class="card-body d-flex flex-column p-2 p-sm-3">' +
-            '<h3 class="card-title small fw-semibold text-truncate mb-1" title="' + nombre.replace(/"/g, '&quot;') + '">' + nombre + '</h3>' +
-            '<p class="card-text text-primary fw-bold mb-2">' + formatPrice(p.precio) + '</p>' +
-          '</div>' +
-        '</a>' +
-        '<div class="card-footer border-0 bg-white p-2 p-sm-3 pt-0">' +
-          '<button type="button" class="btn btn-primary btn-sm w-100 add-to-cart" data-codigo="' + p.codigo + '" data-nombre="' + nombre.replace(/"/g, '&quot;') + '" data-precio="' + p.precio + '"' + imgAttr + '>Agregar</button>' +
         '</div>' +
-      '</div>' +
-    '</div>';
+      '</div>';
+    } catch (e) {
+      return '<div class="col"><div class="card h-100 shadow-sm"><div class="card-body"><p class="text-muted small mb-0">Error al cargar producto</p></div></div></div>';
+    }
   }
 
   function filterProductos(q) {
@@ -261,7 +272,12 @@
       return;
     }
     if (empty) empty.style.display = 'none';
-    grid.innerHTML = list.map(function (p) { return renderProductCard(p, false); }).join('');
+    try {
+      grid.innerHTML = list.map(function (p) { return renderProductCard(p, false); }).join('');
+    } catch (err) {
+      grid.innerHTML = '<div class="col-12"><p class="text-danger small">Error al mostrar el catálogo. Revisá la consola del navegador.</p></div>';
+      return;
+    }
     grid.querySelectorAll('.add-to-cart').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
