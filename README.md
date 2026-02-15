@@ -49,12 +49,14 @@ La tienda quedará disponible en `http://localhost:3000` (o el puerto indicado e
 - Usuario por defecto (solo para pruebas): `admin@tiendae.com` / `admin123`. **Cambiar en producción** (agregar usuarios en la base o crear un script de alta).
 - Listar pedidos, filtrar por estado, cambiar estado y marcar como "enviado".
 
-## Subir a tu servidor
+## Subir a tu servidor (deploy)
 
-1. Subir todo el proyecto (carpetas `public`, `fotos`, archivos `server.js`, `db.js`, `package.json`, `productos.json`).
-2. En el servidor: `npm install --production` y `npm start`.
-3. Usar un proceso manager (PM2, systemd, etc.) para mantener el servidor corriendo.
-4. Opcional: poner un reverse proxy (Nginx) con HTTPS delante del puerto 3000.
+Ver **[DEPLOY.md](DEPLOY.md)** para la guía paso a paso. Resumen:
+
+1. Subir el proyecto (git clone o rsync/FTP).
+2. En el servidor: `npm install --production`, crear `.env` desde `.env.example` (configurar `PORT`, `JWT_SECRET` y opcionalmente Mercado Pago).
+3. Probar con `npm start` y luego usar **PM2** para que quede corriendo: `pm2 start server.js --name tiendae` y `pm2 save`.
+4. Opcional: Nginx como reverse proxy con HTTPS (Let's Encrypt); ver DEPLOY.md.
 
 ## Pagos (Mercado Pago)
 

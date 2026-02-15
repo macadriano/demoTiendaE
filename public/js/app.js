@@ -1,5 +1,6 @@
 (function () {
-  const API = '/api';
+  var basePath = (typeof window !== 'undefined' && window.location.pathname.indexOf('/tienda') === 0) ? '/tienda' : '';
+  const API = basePath + '/api';
   let productos = [];
   let token = localStorage.getItem('token');
   let user = JSON.parse(localStorage.getItem('user') || 'null');
@@ -32,6 +33,19 @@
 
   function formatPrice(n) {
     return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(n);
+  }
+
+  function imgWithLoader(src, alt, opts) {
+    if (!src) return '';
+    opts = opts || {};
+    var imgClass = opts.imgClass || '';
+    var imgStyle = opts.imgStyle || '';
+    var wrapClass = opts.wrapClass || '';
+    var onerr = (opts.onerror ? ' this.parentElement.classList.add(\'loaded\'); ' + opts.onerror : ' this.parentElement.classList.add(\'loaded\'); ').replace(/"/g, '&quot;');
+    var loading = opts.loading === false ? '' : ' loading="lazy"';
+    return '<div class="img-load-wrap ' + wrapClass + '">' +
+      '<div class="img-load-spinner" aria-hidden="true"></div>' +
+      '<img src="' + String(src).replace(/"/g, '&quot;') + '" alt="' + String(alt || '').replace(/"/g, '&quot;') + '"' + loading + ' onload="this.parentElement.classList.add(\'loaded\')" onerror="' + onerr + '"' + (imgClass ? ' class="' + imgClass + '"' : '') + (imgStyle ? ' style="' + imgStyle + '"' : '') + '>';
   }
 
   function authHeaders() {
@@ -79,11 +93,12 @@
     var imgSrc = (p.imagenes && p.imagenes[0]) ? p.imagenes[0] : (p.imagenUrl || p.imagen || '');
     var codigo = encodeURIComponent(p.codigo);
     var imgAttr = (imgSrc ? ' data-imagen="' + String(imgSrc).replace(/"/g, '&quot;') + '"' : '');
+    var cardImg = imgSrc ? imgWithLoader(imgSrc, nombre, { wrapClass: 'ratio-fill', imgClass: 'card-img-top p-2', onerror: "this.src='/fotos/ET_" + (p.codigo || '').replace(/'/g, "\\'") + ".jpg'; this.onerror=null;" }) : '<div class="position-absolute top-0 start-0 w-100 h-100 bg-light d-flex align-items-center justify-content-center"><span class="text-muted small">Sin imagen</span></div>';
     return '<div class="col">' +
       '<div class="card h-100 shadow-sm">' +
         '<a href="#/producto/' + codigo + '" class="text-decoration-none text-dark">' +
-          '<div class="ratio ratio-1x1 bg-light">' +
-            '<img class="card-img-top object-fit-contain p-2" src="' + imgSrc + '" alt="' + nombre.replace(/"/g, '&quot;') + '" loading="lazy" onerror="this.src=\'/fotos/ET_' + p.codigo + '.jpg\'; this.onerror=null;">' +
+          '<div class="ratio ratio-1x1 bg-light position-relative">' +
+            cardImg +
           '</div>' +
           '<div class="card-body d-flex flex-column p-2 p-sm-3">' +
             '<h3 class="card-title small fw-semibold text-truncate mb-1" title="' + nombre.replace(/"/g, '&quot;') + '">' + nombre + '</h3>' +
@@ -265,10 +280,12 @@
       return;
     }
     const nombre = (p.nombre || '').trim().replace(/\s*_+$/g, '');
+    var detImgSrc = (p.imagenes && p.imagenes[0]) ? p.imagenes[0] : (p.imagenUrl || p.imagen || '');
+    var detImgHtml = detImgSrc ? imgWithLoader(detImgSrc, nombre, { wrapClass: 'ratio-fill', imgClass: 'object-fit-contain p-3', onerror: "this.src='/fotos/ET_" + (p.codigo || '').replace(/'/g, "\\'") + ".jpg'; this.onerror=null;" }) : '<div class="position-absolute top-0 start-0 w-100 h-100 bg-light d-flex align-items-center justify-content-center rounded-3"><span class="text-muted">Sin imagen</span></div>';
     wrap.innerHTML =
       '<div class="col-12 col-md-6">' +
-        '<div class="ratio ratio-1x1 bg-light rounded-3 overflow-hidden">' +
-          '<img class="object-fit-contain p-3" src="' + (p.imagenUrl || p.imagen || '') + '" alt="' + nombre.replace(/"/g, '&quot;') + '" onerror="this.src=\'/fotos/ET_' + p.codigo + '.jpg\'; this.onerror=null;">' +
+        '<div class="ratio ratio-1x1 bg-light rounded-3 overflow-hidden position-relative">' +
+          detImgHtml +
         '</div>' +
       '</div>' +
       '<div class="col-12 col-md-6">' +
@@ -277,9 +294,8 @@
         '<p class="fs-4 fw-bold text-primary mb-4">' + formatPrice(p.precio) + '</p>' +
         '<button type="button" class="btn btn-primary add-to-cart" data-codigo="' + p.codigo + '" data-nombre="' + nombre.replace(/"/g, '&quot;') + '" data-precio="' + p.precio + '">Agregar al carrito</button>' +
       '</div>';
-    var imgSrc = (p.imagenes && p.imagenes[0]) ? p.imagenes[0] : (p.imagenUrl || p.imagen || '');
     wrap.querySelector('.add-to-cart').addEventListener('click', () => {
-      addToCart(p.codigo, nombre, p.precio, 1, imgSrc);
+      addToCart(p.codigo, nombre, p.precio, 1, detImgSrc);
     });
   }
 
@@ -318,8 +334,10 @@
     content.innerHTML =
       '<div class="list-group list-group-flush mb-4">' +
         cart.map(function (i, idx) {
+          var thumbSrc = itemImgSrc(i);
+          var thumbHtml = thumbSrc ? imgWithLoader(thumbSrc, '', { wrapClass: 'img-thumb rounded', imgClass: 'rounded', onerror: "this.src='/fotos/" + (i.codigo || '').replace(/'/g, "\\'") + ".jpg'; this.onerror=null;" }) : '<div class="img-load-wrap img-thumb rounded bg-light"><span class="text-muted small">—</span></div>';
           return '<div class="list-group-item d-flex flex-wrap align-items-center gap-2 gap-md-3 py-3" data-idx="' + idx + '">' +
-            '<img src="' + itemImgSrc(i) + '" alt="" class="rounded flex-shrink-0" style="width:64px;height:64px;object-fit:contain" onerror="this.src=\'/fotos/' + i.codigo + '.jpg\'; this.onerror=null;">' +
+            thumbHtml +
             '<div class="flex-grow-1 min-width-0">' +
               '<div class="fw-semibold text-truncate">' + i.nombre + '</div>' +
               '<small class="text-muted">' + formatPrice(i.precio) + ' c/u</small>' +
@@ -391,8 +409,10 @@
     content.innerHTML =
       '<div class="list-group list-group-flush mb-4">' +
         cart.map(function (i) {
+          var chkSrc = itemImgSrc(i);
+          var chkImg = chkSrc ? imgWithLoader(chkSrc, '', { wrapClass: 'img-thumb img-thumb-md rounded', imgClass: 'rounded', onerror: "this.src='/fotos/" + (i.codigo || '').replace(/'/g, "\\'") + ".jpg'; this.onerror=null;" }) : '<div class="img-load-wrap img-thumb img-thumb-md rounded bg-light"><span class="text-muted small">—</span></div>';
           return '<div class="list-group-item d-flex align-items-center gap-3">' +
-            '<img src="' + itemImgSrc(i) + '" alt="" class="rounded flex-shrink-0" style="width:56px;height:56px;object-fit:contain" onerror="this.src=\'/fotos/' + i.codigo + '.jpg\'; this.onerror=null;">' +
+            chkImg +
             '<div class="flex-grow-1"><div class="fw-semibold">' + i.nombre + '</div><small>' + (i.cantidad || 1) + ' × ' + formatPrice(i.precio) + '</small></div>' +
             '<span class="fw-bold text-primary">' + formatPrice(i.precio * (i.cantidad || 1)) + '</span>' +
           '</div>';
@@ -615,14 +635,83 @@
       var r = await fetch(url, { headers: authHeaders() });
       if (r.status === 403 || r.status === 401) { el.innerHTML = '<p class="text-danger">Sesión inválida.</p>'; return; }
       var list = await r.json();
+      var totalVentas = list.reduce(function (sum, p) { return sum + (parseFloat(p.total) || 0); }, 0);
+      var cantidadPedidos = list.length;
+      var cantidadProductos = list.reduce(function (sum, p) {
+        return sum + (p.items || []).reduce(function (s, i) { return s + (parseInt(i.cantidad, 10) || 1); }, 0);
+      }, 0);
+      var byCode = {};
+      list.forEach(function (p) {
+        (p.items || []).forEach(function (i) {
+          var key = (i.codigo || '').toString().trim() || ('n:' + (i.nombre || ''));
+          if (!byCode[key]) byCode[key] = { codigo: (i.codigo || '').toString(), nombre: (i.nombre || '').toString(), cantidad: 0, precioTotal: 0 };
+          byCode[key].cantidad += parseInt(i.cantidad, 10) || 1;
+          byCode[key].precioTotal += (parseFloat(i.precio) || 0) * (parseInt(i.cantidad, 10) || 1);
+        });
+      });
+      var lineasProductos = Object.values(byCode);
+      var ahora = new Date();
+      var usuarioGen = (user && (user.nombre || user.email)) ? (user.nombre || user.email) : 'Usuario';
+      var fechaHora = ahora.toLocaleString('es-AR', { dateStyle: 'short', timeStyle: 'short' });
+      var resumenHtml = '<div id="adminPedidosResumen" class="mb-3 p-3 rounded bg-light border small d-flex flex-wrap justify-content-between align-items-center gap-2">' +
+        '<div><strong>Total ventas:</strong> <span class="text-primary fw-bold">' + formatPrice(totalVentas) + '</span> &nbsp;|&nbsp; ' +
+        '<strong>Pedidos:</strong> ' + cantidadPedidos + ' &nbsp;|&nbsp; ' +
+        '<strong>Productos (unidades):</strong> ' + cantidadProductos + '</div>' +
+        '<div class="d-flex gap-2"><button type="button" class="btn btn-success btn-sm" id="adminPedidosWhatsApp" title="Enviar por WhatsApp"><i class="bi bi-whatsapp"></i></button>' +
+        '<button type="button" class="btn btn-success btn-sm" id="adminPedidosExcel" title="Exportar Excel"><i class="bi bi-file-earmark-excel"></i></button></div></div>';
+      var reportCards = lineasProductos.length === 0 ? '<p class="text-muted small mb-0">No hay productos en el filtro.</p>' : lineasProductos.map(function (l) {
+        return '<div class="card border shadow-sm"><div class="card-body py-2"><div class="d-flex justify-content-between align-items-start"><div><strong>' + (l.codigo ? l.codigo + ' — ' : '') + (l.nombre || '') + '</strong><br><span class="small text-muted">Cantidad: ' + l.cantidad + '</span></div><span class="text-primary fw-bold">' + formatPrice(l.precioTotal) + '</span></div></div></div>';
+      }).join('');
+      var reportTable = lineasProductos.length === 0 ? '' : '<table class="table table-sm table-bordered"><thead><tr><th>Cantidad</th><th>Código</th><th>Descripción</th><th>Precio total</th></tr></thead><tbody>' +
+        lineasProductos.map(function (l) { return '<tr><td>' + l.cantidad + '</td><td>' + (l.codigo || '') + '</td><td>' + (l.nombre || '') + '</td><td>' + formatPrice(l.precioTotal) + '</td></tr>'; }).join('') + '</tbody></table>';
+      var reportSection = '<div id="adminPedidosReporte" class="mb-3 p-3 rounded border bg-white">' +
+        '<h2 class="h6 fw-bold mb-2">Productos a Preparar</h2>' +
+        '<p class="small text-muted mb-2">Generado por: ' + (usuarioGen.replace(/</g, '&lt;')) + ' — ' + fechaHora + '</p>' +
+        '<p class="small mb-2"><strong>Total ventas:</strong> ' + formatPrice(totalVentas) + ' &nbsp;|&nbsp; <strong>Pedidos:</strong> ' + cantidadPedidos + ' &nbsp;|&nbsp; <strong>Productos (unidades):</strong> ' + cantidadProductos + '</p>' +
+        '<div class="d-block d-md-none d-flex flex-column gap-2">' + reportCards + '</div>' +
+        '<div class="d-none d-md-block">' + reportTable + '</div></div>';
       el.innerHTML = '<div class="mb-3"><label class="form-label small">Estado</label> <select id="adminFilterEstado" class="form-select form-select-sm d-inline-block w-auto"><option value="">Todos</option><option value="pendiente">Pendiente</option><option value="pagado">Pagado</option><option value="preparado">Preparado</option><option value="enviado">Enviado</option><option value="finalizado">Finalizado</option><option value="cancelado">Cancelado</option></select> ' +
         '<label class="form-label small ms-2">Cliente</label> <input type="text" id="adminFilterCliente" class="form-control form-control-sm d-inline-block" style="width:180px" placeholder="Email o nombre"> ' +
-        '<button type="button" class="btn btn-primary btn-sm ms-2" id="adminPedidosFiltrar">Filtrar</button></div><div id="adminPedidosList"></div>';
+        '<button type="button" class="btn btn-primary btn-sm ms-2" id="adminPedidosFiltrar">Filtrar</button></div>' + resumenHtml + reportSection + '<div id="adminPedidosList"></div>';
       document.getElementById('adminFilterEstado').value = estado;
       document.getElementById('adminFilterCliente').value = cliente;
       document.getElementById('adminPedidosList').innerHTML = buildPedidosList(list);
       window._adminPedidosActuales = list;
-      document.getElementById('adminPedidosFiltrar').onclick = function () { estado = document.getElementById('adminFilterEstado').value; cliente = document.getElementById('adminFilterCliente').value; fetchPedidos(); };
+      function aplicarFiltros() { estado = document.getElementById('adminFilterEstado').value; cliente = document.getElementById('adminFilterCliente').value; fetchPedidos(); }
+      document.getElementById('adminPedidosFiltrar').onclick = aplicarFiltros;
+      document.getElementById('adminFilterEstado').onchange = aplicarFiltros;
+      var debounceCliente;
+      document.getElementById('adminFilterCliente').oninput = function () {
+        clearTimeout(debounceCliente);
+        debounceCliente = setTimeout(aplicarFiltros, 350);
+      };
+      document.getElementById('adminPedidosWhatsApp').onclick = function () {
+        var tit = '*Productos a Preparar*';
+        var enc = 'Generado por: ' + usuarioGen + ' - ' + fechaHora;
+        var tot = 'Total ventas: ' + formatPrice(totalVentas) + ' | Pedidos: ' + cantidadPedidos + ' | Productos (unidades): ' + cantidadProductos;
+        var lineas = lineasProductos.length ? lineasProductos.map(function (l) { return l.cantidad + ' | ' + (l.codigo || '') + ' | ' + (l.nombre || '') + ' | ' + formatPrice(l.precioTotal); }).join('\n') : 'Sin productos.';
+        var txt = tit + '\n\n' + enc + '\n\n' + tot + '\n\n*Listado por producto (Cantidad | Código | Descripción | Precio total)*\n' + lineas;
+        window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank', 'noopener');
+      };
+      document.getElementById('adminPedidosExcel').onclick = function () {
+        var csv = '\uFEFF'; // BOM UTF-8
+        csv += 'Productos a Preparar\n';
+        csv += 'Generado por,' + (usuarioGen.replace(/"/g, '""')) + '\n';
+        csv += 'Fecha y hora,' + (fechaHora.replace(/"/g, '""')) + '\n\n';
+        csv += 'Total ventas,' + formatPrice(totalVentas) + '\n';
+        csv += 'Pedidos,' + cantidadPedidos + '\n';
+        csv += 'Productos (unidades),' + cantidadProductos + '\n\n';
+        csv += 'Cantidad,Código,Descripción,Precio total\n';
+        lineasProductos.forEach(function (l) {
+          csv += l.cantidad + ',"' + (l.codigo || '').replace(/"/g, '""') + '","' + (l.nombre || '').replace(/"/g, '""') + '",' + formatPrice(l.precioTotal) + '\n';
+        });
+        var blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'ProductosAPreparar_' + ahora.getFullYear() + '-' + String(ahora.getMonth() + 1).padStart(2, '0') + '-' + String(ahora.getDate()).padStart(2, '0') + '_' + String(ahora.getHours()).padStart(2, '0') + String(ahora.getMinutes()).padStart(2, '0') + '.csv';
+        a.click();
+        URL.revokeObjectURL(a.href);
+      };
       document.getElementById('adminPedidosList').querySelectorAll('.estado-select').forEach(function (sel) {
         sel.addEventListener('change', async function () {
           var id = sel.dataset.id;
@@ -665,7 +754,7 @@
       listEl.innerHTML = list.length === 0 ? '<p class="text-muted">No hay productos.</p>' : list.map(function (p) {
         var eliminado = !!p.deleted_at;
         var img = (p.imagenes && p.imagenes[0] && p.imagenes[0].ruta) ? p.imagenes[0].ruta : '';
-        var imgHtml = img ? '<img src="' + img + '" alt="" class="rounded me-2" style="width:48px;height:48px;object-fit:cover">' : '';
+        var imgHtml = img ? imgWithLoader(img, '', { wrapClass: 'img-thumb img-thumb-sm rounded me-2', imgClass: 'rounded', loading: false }) : '';
         return '<div class="list-group-item d-flex align-items-center flex-wrap gap-2' + (eliminado ? ' bg-light' : '') + '">' + imgHtml +
           '<div class="flex-grow-1"><strong>' + (p.nombre || '') + '</strong> ' + p.codigo + ' — ' + formatPrice(p.precio) + (p.categoria_nombre ? ' <span class="badge bg-secondary">' + p.categoria_nombre + '</span>' : '') + (eliminado ? ' <span class="badge bg-danger">Eliminado</span>' : '') + '</div>' +
           '<button type="button" class="btn btn-outline-primary btn-sm btn-ap-edit" data-id="' + p.id + '">Editar</button>' +
