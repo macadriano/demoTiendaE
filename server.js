@@ -60,38 +60,28 @@ app.get('/api/categorias', (req, res) => {
   }
 });
 
-// --- API Productos (JSON + DB, filtro por categoría) ---
+// --- API Productos: DB primero (admin), luego JSON para los que no estén en DB ---
 function getProductosPublic(categoriaFilter) {
   const list = [];
+  const codigosVistos = new Set();
+
+  // 1) Productos de la base de datos (los que ves en Administración) — prioridad
+  let dbRows = [];
   try {
-    const data = JSON.parse(fs.readFileSync(path.join(__dirname, 'productos.json'), 'utf8'));
-    for (const p of data) {
-      const categoria = 'Electros';
-      if (categoriaFilter && categoria !== categoriaFilter) continue;
-      const imagenUrl = getImagenUrl(p.codigo);
-      list.push({
-        ...p,
-        categoria,
-        imagenUrl,
-        imagenes: [imagenUrl],
-        descripcion: p.descripcion || null
-      });
-    }
-  } catch (err) {
-    // ignorar si no existe productos.json
+    dbRows = db.prepare(`
+      SELECT p.id, p.codigo, p.nombre, p.precio, p.descripcion, p.created_at, c.nombre as categoria_nombre
+      FROM productos p
+      LEFT JOIN categorias c ON c.id = p.categoria_id
+      WHERE (p.deleted_at IS NULL)
+    `).all();
+  } catch (e) {
+    // si falla la tabla (ej. no existe), seguir sin DB
   }
-  const dbRows = db.prepare(`
-    SELECT p.id, p.codigo, p.nombre, p.precio, p.descripcion, p.created_at, c.nombre as categoria_nombre
-    FROM productos p
-    LEFT JOIN categorias c ON c.id = p.categoria_id
-    WHERE (p.deleted_at IS NULL)
-  `).all();
-  const codigosEnLista = new Set(list.map(x => (x.codigo || '').toString().toLowerCase()));
   for (const r of dbRows) {
     const catNombre = r.categoria_nombre || 'Electros';
     if (categoriaFilter && catNombre !== categoriaFilter) continue;
-    if (codigosEnLista.has((r.codigo || '').toString().toLowerCase())) continue;
-    codigosEnLista.add((r.codigo || '').toString().toLowerCase());
+    const codigoKey = (r.codigo || '').toString().toLowerCase();
+    if (codigoKey) codigosVistos.add(codigoKey);
     const imagenes = db.prepare('SELECT ruta FROM producto_imagenes WHERE producto_id = ? ORDER BY orden, id').all(r.id).map(i => i.ruta);
     list.push({
       id: r.id,
@@ -104,6 +94,28 @@ function getProductosPublic(categoriaFilter) {
       imagenes: imagenes.length ? imagenes : [],
       created_at: r.created_at
     });
+  }
+
+  // 2) Productos del JSON solo si el código NO está ya en la DB
+  try {
+    const data = JSON.parse(fs.readFileSync(path.join(__dirname, 'productos.json'), 'utf8'));
+    for (const p of data) {
+      const codigoKey = (p.codigo || '').toString().toLowerCase();
+      if (codigoKey && codigosVistos.has(codigoKey)) continue;
+      const categoria = 'Electros';
+      if (categoriaFilter && categoria !== categoriaFilter) continue;
+      if (codigoKey) codigosVistos.add(codigoKey);
+      const imagenUrl = getImagenUrl(p.codigo);
+      list.push({
+        ...p,
+        categoria,
+        imagenUrl,
+        imagenes: [imagenUrl],
+        descripcion: p.descripcion || null
+      });
+    }
+  } catch (err) {
+    // ignorar si no existe o falla productos.json
   }
   return list;
 }
